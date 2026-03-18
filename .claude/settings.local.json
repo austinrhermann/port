@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/austinhermann/Documents/GitHub/austin-port/*.html)",
+      "Bash(python3 -:*)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:austinroberthermann.com)",
+      "Bash(grep -v \"^[0-9]*:$\")",
+      "Bash(perl -i -0777 -pe 's/<div style=\"\"[^\"\"]*font-size:13px;font-weight:bold;text-transform:uppercase[^\"\"]*\"\">.*?<span style=\"\"flex:1;height:1px;background:#a0a0a0;display:inline-block;\"\"><\\\\/span><\\\\/div>//g' *.html)",
+      "Bash(grep -c \"font-size:13px;font-weight:bold;text-transform:uppercase\" *.html)",
+      "Bash(perl -i -pe 's/<span style=\"\"font-size:14px;color:#555555;margin-left:12px;\"\">aesthetic engineer &bull; online since 2001<\\\\/span>//g' *.html)",
+      "Bash(grep -l \"aesthetic engineer\" *.html)",
+      "Bash(ls /Users/austinhermann/Documents/GitHub/austin-port/*.html)",
+      "WebFetch(domain:www.austinroberthermann.com)",
+      "Bash(python3 -c \":*)",
+      "Bash(ls -d Images-*)",
+      "WebFetch(domain:austinhermann.myportfolio.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download} bytes\" -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" -H \"Referer: https://austinhermann.myportfolio.com/\" \"https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/e1120341-ce5b-4e36-89e6-b1e5576dc597_rw_1200.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download} bytes\" -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/e76d4715-683d-4add-b3e1-2923d7921872_rw_1920.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download} bytes\" -L -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/ad19211b-b9e8-4e98-88f8-f98913080d2a_rw_1920.jpg?h=dae6c8b9dffb8bb1c19c034c7c01f1a3\")",
+      "Bash(python3 build-galleries.py)",
+      "Bash(ls /Users/austinhermann/Documents/GitHub/austin-port/Images-*)",
+      "Bash(xargs -I{} basename {})",
+      "Bash(python3:*)",
+      "Bash(grep -o '.\\\\{0,50\\\\}src=\"\"Assets-Local/sanjam/0c00d985' /Users/austinhermann/Documents/GitHub/austin-port/sanjam.html)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
