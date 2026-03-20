@@ -25,7 +25,15 @@
       "Bash(grep -o '.\\\\{0,50\\\\}src=\"\"Assets-Local/sanjam/0c00d985' /Users/austinhermann/Documents/GitHub/austin-port/sanjam.html)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765)",
+      "Bash(kill 42669)",
+      "Bash(npx prettier:*)",
+      "Bash(grep -h 'font-family.*Times New Roman' *.html)",
+      "Bash(grep -c 'font-family.*Times New Roman' *.html)"
     ]
   }
 }

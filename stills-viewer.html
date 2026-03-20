@@ -1,407 +1,1011 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>http://www.austinroberthermann.com/stills-viewer.html - Microsoft Internet Explorer</title>
-<style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      http://www.austinroberthermann.com/stills-viewer.html - Microsoft Internet
+      Explorer
+    </title>
+    <style>
+      html {
+        background: #6a6a6a;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1400px;
+        background: #c8c8c8;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 1px,
+          rgba(0, 0, 0, 0.03) 1px,
+          rgba(0, 0, 0, 0.03) 2px
+        );
+        image-rendering: pixelated;
+      }
+      * {
+        -webkit-font-smoothing: none !important;
+        -moz-osx-font-smoothing: unset !important;
+        font-smooth: never !important;
+        text-rendering: optimizeSpeed !important;
+        box-sizing: border-box;
+        border-radius: 0 !important;
+      }
+      a:hover {
+        background: #000080 !important;
+        color: #fff !important;
+        text-decoration: none !important;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
 
+      /* ── Viewer-specific styles ── */
+      .viewer-toolbar {
+        background: #c0c0c0;
+        border-bottom: 2px solid;
+        border-color: #808080 #fff #fff #808080;
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-size: 13px;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .viewer-btn {
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #fff #808080 #808080 #fff;
+        padding: 1px 8px;
+        cursor: pointer;
+        font-size: 13px;
+        font-family: "Times New Roman", serif, monospace !important;
+        line-height: 1.5;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        white-space: nowrap;
+        color: #000;
+        -webkit-font-smoothing: none !important;
+        text-rendering: optimizeSpeed !important;
+      }
+      .viewer-btn:hover {
+        background: #000080 !important;
+        color: #fff !important;
+      }
+      .viewer-btn:active {
+        border-color: #808080 #fff #fff #808080;
+      }
+      .viewer-btn.active {
+        border-color: #808080 #fff #fff #808080;
+        background: #b0b0b0;
+      }
+      .viewer-sep {
+        width: 1px;
+        height: 20px;
+        background: #808080;
+        border-right: 1px solid #fff;
+        margin: 0 4px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+      .viewer-counter {
+        font-family: "Times New Roman", serif, monospace !important;
+        font-size: 13px;
+        padding: 0 8px;
+        color: #000;
+        -webkit-font-smoothing: none !important;
+        text-rendering: optimizeSpeed !important;
+        min-width: 52px;
+        text-align: center;
+      }
+      .viewer-hint {
+        font-family: "Times New Roman", serif, monospace !important;
+        font-size: 12px;
+        color: #555555;
+        padding: 0 4px;
+        -webkit-font-smoothing: none !important;
+        text-rendering: optimizeSpeed !important;
+        flex: 1;
+        text-align: right;
+      }
+      .viewer-titlebar {
+        background: #000080;
+        color: #fff;
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: bold;
+        user-select: none;
+        flex-shrink: 0;
+        -webkit-font-smoothing: none !important;
+      }
+      .viewer-titlebar-btns {
+        display: flex;
+        gap: 2px;
+      }
+      .viewer-titlebar-btn {
+        background: #c0c0c0;
+        color: #000;
+        border: 1px solid;
+        border-color: #fff #808080 #808080 #fff;
+        font-size: 10px;
+        padding: 0 4px;
+        line-height: 14px;
+        cursor: default;
+      }
+      #view-single {
+        display: flex;
+        flex-direction: column;
+        padding: 6px;
+      }
+      .image-stage {
+        position: relative;
+        background: #b0b0a8;
+        border: 2px solid;
+        border-color: #808080 #fff #fff #808080;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+      }
+      .image-stage img {
+        max-width: 100%;
+        max-height: 360px;
+        display: block;
+        object-fit: contain;
+        image-rendering: auto;
+        filter: contrast(1.05) saturate(0.85);
+        transition: opacity 0.08s;
+      }
+      .image-stage img.loading {
+        opacity: 0.4;
+      }
+      .click-prev,
+      .click-next {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 2;
+        background: transparent;
+      }
+      .click-prev {
+        left: 0;
+        cursor: w-resize;
+      }
+      .click-next {
+        right: 0;
+        cursor: e-resize;
+      }
+      .viewer-caption {
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #fff #808080 #808080 #fff;
+        border-top: none;
+        padding: 2px 6px;
+        font-family: "Times New Roman", serif, monospace !important;
+        font-size: 12px;
+        color: #555555;
+        display: flex;
+        justify-content: space-between;
+        -webkit-font-smoothing: none !important;
+        text-rendering: optimizeSpeed !important;
+      }
+      #view-grid {
+        display: none;
+        padding: 6px;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+      }
+      .grid-thumb {
+        border: 2px solid;
+        border-color: #808080 #fff #fff #808080;
+        background: #b0b0a8;
+        overflow: hidden;
+        cursor: pointer;
+        display: block;
+      }
+      .grid-thumb:hover {
+        border-color: #fff #808080 #808080 #fff;
+      }
+      .grid-thumb.active-thumb {
+        border-color: #000080 #000080 #000080 #000080;
+      }
+      .grid-thumb img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        display: block;
+        object-fit: cover;
+        filter: contrast(1.05) saturate(0.85);
+      }
+      .grid-thumb-label {
+        font-family: "Times New Roman", serif, monospace !important;
+        font-size: 11px;
+        padding: 2px 3px;
+        background: #c0c0c0;
+        border-top: 1px solid #a0a0a0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #000;
+        -webkit-font-smoothing: none !important;
+        text-rendering: optimizeSpeed !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        border: 2px solid;
+        border-color: #fff #808080 #808080 #fff;
+        box-shadow: 1px 1px 0 #000;
+        margin: 0;
+      "
+    >
+      <!-- PAGE AREA -->
+      <div
+        style="
+          background: #c8c8c8;
+          background-image: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(0, 0, 0, 0.025) 1px,
+            rgba(0, 0, 0, 0.025) 2px
+          );
+        "
+      >
+        <table
+          style="width: 100%; border-collapse: collapse; min-height: 480px"
+        >
+          <tr>
+            <td
+              colspan="2"
+              style="
+                border-bottom: 2px solid #000000;
+                padding: 10px 12px 8px 12px;
+                background: #c8c8c8;
+              "
+            >
+              <a
+                href="index.html"
+                style="
+                  font-size: 24px;
+                  font-weight: bold;
+                  color: #000000;
+                  text-decoration: none;
+                "
+                >austin robert hermann</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td
+              style="
+                width: 185px;
+                vertical-align: top;
+                border-right: 1px solid #a0a0a0;
+                padding: 10px 8px 12px 10px;
+                background: #c8c8c8;
+              "
+            >
+              <div style="margin-bottom: 14px">
+                <a
+                  href="index.html"
+                  style="
+                    font-size: 13px;
+                    font-weight: bold;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #00008b;
+                    text-decoration: underline;
+                    border-bottom: 1px solid #a0a0a0;
+                    padding-bottom: 2px;
+                    margin-bottom: 3px;
+                    display: block;
+                  "
+                  >MOTION</a
+                >
+                <ul style="list-style: none; margin: 0; padding: 0">
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="sanjam.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >san jamerino sing-a-long</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="all-kinds-of-planes.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >all kinds of planes</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="all-kinds-of-cars.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >all kinds of cars</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="magic-tricks.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >magic tricks</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="figure-03-volcanos.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >figure 03</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="figure-02-earths-layers.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >figure 02</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="figure-01-limestone-cave.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >figure 01</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="working-in-teams.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >working in teams</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="google-dots.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >google dots</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="fp-blend.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >fp blend live</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="demyulederby.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >demyulederby</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="poo-power.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >poo power</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="fashion.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >fashion</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div style="margin-bottom: 14px">
+                <a
+                  href="photography-hub.html"
+                  style="
+                    font-size: 13px;
+                    font-weight: bold;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #00008b;
+                    text-decoration: underline;
+                    border-bottom: 1px solid #a0a0a0;
+                    padding-bottom: 2px;
+                    margin-bottom: 3px;
+                    display: block;
+                  "
+                  >PHOTOGRAPHY</a
+                >
+                <ul style="list-style: none; margin: 0; padding: 0">
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="nature.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >plants</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="2021-2025.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >2021–2025</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="2016-2020.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >2016–2020</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="2011-2015.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >2011–2015</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="2000-2010.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >2000–2010</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="article-one.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >article one</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div style="margin-bottom: 14px">
+                <a
+                  href="building-hub.html"
+                  style="
+                    font-size: 13px;
+                    font-weight: bold;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #00008b;
+                    text-decoration: underline;
+                    border-bottom: 1px solid #a0a0a0;
+                    padding-bottom: 2px;
+                    margin-bottom: 3px;
+                    display: block;
+                  "
+                  >BUILDING/OTHER</a
+                >
+                <ul style="list-style: none; margin: 0; padding: 0">
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="chromogenic-process.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >chromogenic</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="durst-printo.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >durst printo</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="deardorff.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >deardorff/darkroom</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="sunvisor.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >sunvisor</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="sound.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >music/audio</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div style="margin-bottom: 14px">
+                <div
+                  style="
+                    font-size: 13px;
+                    font-weight: bold;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #555555;
+                    border-bottom: 1px solid #a0a0a0;
+                    padding-bottom: 2px;
+                    margin-bottom: 3px;
+                  "
+                >
+                  OTHER
+                </div>
+                <ul style="list-style: none; margin: 0; padding: 0">
+                  <li style="margin: 0; padding: 0">
+                    <a
+                      href="contact.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >about/contact</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </td>
 
-html{background:#6a6a6a;min-height:100%;margin:0;padding:0;}
-body{margin:0 auto;padding:0;max-width:1400px;background:#c8c8c8;background-image:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.03) 1px,rgba(0,0,0,0.03) 2px);image-rendering:pixelated;font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;}
-*{-webkit-font-smoothing:none!important;-moz-osx-font-smoothing:unset!important;font-smooth:never!important;text-rendering:optimizeSpeed!important;box-sizing:border-box;border-radius:0!important;font-family:'Times New Roman',serif;}
-a:hover{background:#000080!important;color:#fff!important;text-decoration:none!important;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+            <td style="padding: 0; vertical-align: top; background: #c8c8c8">
+              <!-- ── Viewer Title Bar ── -->
+              <div class="viewer-titlebar">
+                <span id="viewer-title-text">&#x1F4F7; Image Viewer</span>
+                <div class="viewer-titlebar-btns">
+                  <span class="viewer-titlebar-btn">_</span>
+                  <span class="viewer-titlebar-btn">&#x25A1;</span>
+                  <span class="viewer-titlebar-btn">&#x2715;</span>
+                </div>
+              </div>
 
-/* ── Viewer-specific styles ── */
-.viewer-toolbar {
-  background: #c0c0c0;
-  border-bottom: 2px solid;
-  border-color: #808080 #fff #fff #808080;
-  padding: 2px 4px;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-size: 13px;
-  user-select: none;
-  flex-shrink: 0;
-}
-.viewer-btn {
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #fff #808080 #808080 #fff;
-  padding: 1px 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-family:'Times New Roman',serif, monospace !important;
-  line-height: 1.5;
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  white-space: nowrap;
-  color: #000;
-  -webkit-font-smoothing: none !important;
-  text-rendering: optimizeSpeed !important;
-}
-.viewer-btn:hover {
-  background: #000080 !important;
-  color: #fff !important;
-}
-.viewer-btn:active {
-  border-color: #808080 #fff #fff #808080;
-}
-.viewer-btn.active {
-  border-color: #808080 #fff #fff #808080;
-  background: #b0b0b0;
-}
-.viewer-sep {
-  width: 1px;
-  height: 20px;
-  background: #808080;
-  border-right: 1px solid #fff;
-  margin: 0 4px;
-  display: inline-block;
-  flex-shrink: 0;
-}
-.viewer-counter {
-  font-family:'Times New Roman',serif, monospace !important;
-  font-size: 13px;
-  padding: 0 8px;
-  color: #000;
-  -webkit-font-smoothing: none !important;
-  text-rendering: optimizeSpeed !important;
-  min-width: 52px;
-  text-align: center;
-}
-.viewer-hint {
-  font-family:'Times New Roman',serif, monospace !important;
-  font-size: 12px;
-  color: #555555;
-  padding: 0 4px;
-  -webkit-font-smoothing: none !important;
-  text-rendering: optimizeSpeed !important;
-  flex: 1;
-  text-align: right;
-}
-.viewer-titlebar {
-  background: #000080;
-  color: #fff;
-  padding: 2px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 12px;
-  font-weight: bold;
-  user-select: none;
-  flex-shrink: 0;
-  font-family: 'Times New Roman', serif;
-  -webkit-font-smoothing: none !important;
-}
-.viewer-titlebar-btns {
-  display: flex;
-  gap: 2px;
-}
-.viewer-titlebar-btn {
-  background: #c0c0c0;
-  color: #000;
-  border: 1px solid;
-  border-color: #fff #808080 #808080 #fff;
-  font-size: 10px;
-  padding: 0 4px;
-  line-height: 14px;
-  cursor: default;
-  font-family: 'Times New Roman', serif;
-}
-#view-single {
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-}
-.image-stage {
-  position: relative;
-  background: #b0b0a8;
-  border: 2px solid;
-  border-color: #808080 #fff #fff #808080;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 180px;
-}
-.image-stage img {
-  max-width: 100%;
-  max-height: 360px;
-  display: block;
-  object-fit: contain;
-  image-rendering: auto;
-  filter: contrast(1.05) saturate(0.85);
-  transition: opacity 0.08s;
-}
-.image-stage img.loading {
-  opacity: 0.4;
-}
-.click-prev, .click-next {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 2;
-  background: transparent;
-}
-.click-prev { left: 0; cursor: w-resize; }
-.click-next { right: 0; cursor: e-resize; }
-.viewer-caption {
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #fff #808080 #808080 #fff;
-  border-top: none;
-  padding: 2px 6px;
-  font-family:'Times New Roman',serif, monospace !important;
-  font-size: 12px;
-  color: #555555;
-  display: flex;
-  justify-content: space-between;
-  -webkit-font-smoothing: none !important;
-  text-rendering: optimizeSpeed !important;
-}
-#view-grid {
-  display: none;
-  padding: 6px;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-}
-.grid-thumb {
-  border: 2px solid;
-  border-color: #808080 #fff #fff #808080;
-  background: #b0b0a8;
-  overflow: hidden;
-  cursor: pointer;
-  display: block;
-}
-.grid-thumb:hover {
-  border-color: #fff #808080 #808080 #fff;
-}
-.grid-thumb.active-thumb {
-  border-color: #000080 #000080 #000080 #000080;
-}
-.grid-thumb img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  display: block;
-  object-fit: cover;
-  filter: contrast(1.05) saturate(0.85);
-}
-.grid-thumb-label {
-  font-family:'Times New Roman',serif, monospace !important;
-  font-size: 11px;
-  padding: 2px 3px;
-  background: #c0c0c0;
-  border-top: 1px solid #a0a0a0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #000;
-  -webkit-font-smoothing: none !important;
-  text-rendering: optimizeSpeed !important;
-}
+              <!-- ── Viewer Toolbar ── -->
+              <div class="viewer-toolbar">
+                <button
+                  class="viewer-btn"
+                  id="btn-grid"
+                  onclick="toggleView()"
+                  title="Toggle grid view (G)"
+                >
+                  &#x229E;
+                </button>
+                <span class="viewer-sep"></span>
+                <button class="viewer-btn" id="btn-prev" onclick="navigate(-1)">
+                  &#9664;
+                </button>
+                <span class="viewer-counter" id="counter">1 / 1</span>
+                <button class="viewer-btn" id="btn-next" onclick="navigate(1)">
+                  &#9654;
+                </button>
+                <span class="viewer-sep"></span>
+                <span class="viewer-hint" id="nav-hint"
+                  >&larr; use arrow keys &rarr;</span
+                >
+              </div>
 
-</style>
-</head>
-<body>
+              <!-- ── Single Image View ── -->
+              <div id="view-single">
+                <div class="image-stage" id="image-stage">
+                  <div class="click-prev" onclick="navigate(-1)"></div>
+                  <div class="click-next" onclick="navigate(1)"></div>
+                  <img
+                    id="main-img"
+                    src=""
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="viewer-caption">
+                  <span id="img-title">&nbsp;</span>
+                  <span id="img-filename">&nbsp;</span>
+                </div>
+              </div>
 
-<div style="border:2px solid;border-color:#fff #808080 #808080 #fff;box-shadow:1px 1px 0 #000;margin:0;">
+              <!-- ── Grid View ── -->
+              <div id="view-grid">
+                <div class="grid-container" id="grid-container"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              colspan="2"
+              style="
+                border-top: 2px solid #000000;
+                padding: 4px 12px;
+                font-size: 15px;
+                color: #555555;
+              "
+            >
+              <span
+                >visitors
+                <span
+                  style="
+                    background: #000000;
+                    color: #c8c8c8;
+                    padding: 1px 6px;
+                    margin-left: 4px;
+                    letter-spacing: 2px;
+                  "
+                  >004821</span
+                ></span
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
 
-  <!-- PAGE AREA -->
-  <div style="background:#c8c8c8;background-image:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.025) 1px,rgba(0,0,0,0.025) 2px);">
-    <table style="width:100%;border-collapse:collapse;min-height:480px;">
-      <tr>
-        <td colspan="2" style="border-bottom:2px solid #000000;padding:10px 12px 8px 12px;background:#c8c8c8;">
-          <a href="index.html" style="font-size:24px;font-weight:bold;color:#000000;text-decoration:none;">austin robert hermann</a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td style="width:185px;vertical-align:top;border-right:1px solid #a0a0a0;padding:10px 8px 12px 10px;background:#c8c8c8;"><div style="margin-bottom:14px;"><a href="index.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:13px;font-weight:bold;letter-spacing:0.05em;text-transform:uppercase;color:#00008b;text-decoration:underline;border-bottom:1px solid #a0a0a0;padding-bottom:2px;margin-bottom:3px;display:block;">MOTION</a><ul style="list-style:none;margin:0;padding:0;"><li style="margin:0;padding:0;"><a href="sanjam.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">san jamerino sing-a-long</a></li><li style="margin:0;padding:0;"><a href="all-kinds-of-planes.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">all kinds of planes</a></li><li style="margin:0;padding:0;"><a href="all-kinds-of-cars.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">all kinds of cars</a></li><li style="margin:0;padding:0;"><a href="magic-tricks.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">magic tricks</a></li><li style="margin:0;padding:0;"><a href="figure-03-volcanos.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">figure 03</a></li><li style="margin:0;padding:0;"><a href="figure-02-earths-layers.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">figure 02</a></li><li style="margin:0;padding:0;"><a href="figure-01-limestone-cave.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">figure 01</a></li><li style="margin:0;padding:0;"><a href="working-in-teams.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">working in teams</a></li><li style="margin:0;padding:0;"><a href="google-dots.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">google dots</a></li><li style="margin:0;padding:0;"><a href="fp-blend.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">fp blend live</a></li><li style="margin:0;padding:0;"><a href="demyulederby.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">demyulederby</a></li><li style="margin:0;padding:0;"><a href="poo-power.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">poo power</a></li><li style="margin:0;padding:0;"><a href="fashion.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">fashion</a></li></ul></div><div style="margin-bottom:14px;"><a href="photography-hub.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:13px;font-weight:bold;letter-spacing:0.05em;text-transform:uppercase;color:#00008b;text-decoration:underline;border-bottom:1px solid #a0a0a0;padding-bottom:2px;margin-bottom:3px;display:block;">PHOTOGRAPHY</a><ul style="list-style:none;margin:0;padding:0;"><li style="margin:0;padding:0;"><a href="nature.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">plants</a></li><li style="margin:0;padding:0;"><a href="2021-2025.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">2021–2025</a></li><li style="margin:0;padding:0;"><a href="2016-2020.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">2016–2020</a></li><li style="margin:0;padding:0;"><a href="2011-2015.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">2011–2015</a></li><li style="margin:0;padding:0;"><a href="2000-2010.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">2000–2010</a></li><li style="margin:0;padding:0;"><a href="article-one.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">article one</a></li></ul></div><div style="margin-bottom:14px;"><a href="building-hub.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:13px;font-weight:bold;letter-spacing:0.05em;text-transform:uppercase;color:#00008b;text-decoration:underline;border-bottom:1px solid #a0a0a0;padding-bottom:2px;margin-bottom:3px;display:block;">BUILDING/OTHER</a><ul style="list-style:none;margin:0;padding:0;"><li style="margin:0;padding:0;"><a href="chromogenic-process.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">chromogenic</a></li><li style="margin:0;padding:0;"><a href="durst-printo.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">durst printo</a></li><li style="margin:0;padding:0;"><a href="deardorff.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">deardorff/darkroom</a></li><li style="margin:0;padding:0;"><a href="sunvisor.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">sunvisor</a></li><li style="margin:0;padding:0;"><a href="sound.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">music/audio</a></li></ul></div><div style="margin-bottom:14px;"><div style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:13px;font-weight:bold;letter-spacing:0.05em;text-transform:uppercase;color:#555555;border-bottom:1px solid #a0a0a0;padding-bottom:2px;margin-bottom:3px;">OTHER</div><ul style="list-style:none;margin:0;padding:0;"><li style="margin:0;padding:0;"><a href="contact.html" style="font-family:'Times New Roman',serif;-webkit-font-smoothing:none;text-rendering:optimizeSpeed;font-size:15px;color:#00008b;text-decoration:underline;display:block;padding:0 0 1px 6px;line-height:1.6;">about/contact</a></li></ul></div></td>
-        
-        <td style="padding:0;vertical-align:top;background:#c8c8c8;">
+      <!-- Status bar -->
+      <div
+        style="
+          background: #c0c0c0;
+          border-top: 2px solid;
+          border-color: #808080 #fff #fff #808080;
+          padding: 1px 4px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 12px;
+        "
+      >
+        <span id="status-bar">Ready</span>
+        <span
+          style="
+            border-left: 1px solid #808080;
+            padding-left: 6px;
+            margin-left: 4px;
+          "
+          >&#127758; Internet</span
+        >
+      </div>
+    </div>
 
-          <!-- ── Viewer Title Bar ── -->
-          <div class="viewer-titlebar">
-            <span id="viewer-title-text">&#x1F4F7; Image Viewer</span>
-            <div class="viewer-titlebar-btns">
-              <span class="viewer-titlebar-btn">_</span>
-              <span class="viewer-titlebar-btn">&#x25A1;</span>
-              <span class="viewer-titlebar-btn">&#x2715;</span>
-            </div>
-          </div>
+    <script>
+      const IMAGES = [
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1097bc8e-6fe3-413d-a468-4a9347cef658_carw_5x4x640.jpg",
+          title: "stills \u2014 001",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1600c982-8870-4366-9031-bdc10e03f7a6_carw_5x4x640.jpg",
+          title: "stills \u2014 002",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/535875fa-cede-4665-a4c5-31360637ffa9_carw_5x4x640.jpg",
+          title: "stills \u2014 003",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/d6b331b0-e520-43a3-b0fa-8915a356c2f3_carw_5x4x640.jpg",
+          title: "stills \u2014 004",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1097bc8e-6fe3-413d-a468-4a9347cef658_carw_5x4x640.jpg",
+          title: "stills \u2014 005",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1600c982-8870-4366-9031-bdc10e03f7a6_carw_5x4x640.jpg",
+          title: "stills \u2014 006",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/535875fa-cede-4665-a4c5-31360637ffa9_carw_5x4x640.jpg",
+          title: "stills \u2014 007",
+        },
+        {
+          src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/d6b331b0-e520-43a3-b0fa-8915a356c2f3_carw_5x4x640.jpg",
+          title: "stills \u2014 008",
+        },
+        // To add local images use: { src: "images/photo-001.jpg", title: "your caption" }
+      ];
 
-          <!-- ── Viewer Toolbar ── -->
-          <div class="viewer-toolbar">
-            <button class="viewer-btn" id="btn-grid" onclick="toggleView()" title="Toggle grid view (G)">&#x229E;</button>
-            <span class="viewer-sep"></span>
-            <button class="viewer-btn" id="btn-prev" onclick="navigate(-1)">&#9664;</button>
-            <span class="viewer-counter" id="counter">1 / 1</span>
-            <button class="viewer-btn" id="btn-next" onclick="navigate(1)">&#9654;</button>
-            <span class="viewer-sep"></span>
-            <span class="viewer-hint" id="nav-hint">&larr; use arrow keys &rarr;</span>
-          </div>
+      let currentIndex = 0;
+      let isGridView = false;
 
-          <!-- ── Single Image View ── -->
-          <div id="view-single">
-            <div class="image-stage" id="image-stage">
-              <div class="click-prev" onclick="navigate(-1)"></div>
-              <div class="click-next" onclick="navigate(1)"></div>
-              <img id="main-img" src="" alt="" />
-            </div>
-            <div class="viewer-caption">
-              <span id="img-title">&nbsp;</span>
-              <span id="img-filename">&nbsp;</span>
-            </div>
-          </div>
+      function init() {
+        buildGrid();
+        const hash = parseInt(window.location.hash.replace("#", ""), 10);
+        if (!isNaN(hash) && hash >= 1 && hash <= IMAGES.length) {
+          currentIndex = hash - 1;
+        }
+        render();
+      }
 
-          <!-- ── Grid View ── -->
-          <div id="view-grid">
-            <div class="grid-container" id="grid-container"></div>
-          </div>
+      function buildGrid() {
+        const container = document.getElementById("grid-container");
+        IMAGES.forEach((img, i) => {
+          const thumb = document.createElement("div");
+          thumb.className = "grid-thumb";
+          thumb.id = "thumb-" + i;
+          thumb.innerHTML =
+            '<img src="' +
+            img.src +
+            '" alt="' +
+            img.title +
+            '" loading="lazy" decoding="async"><div class="grid-thumb-label">' +
+            img.title +
+            "</div>";
+          thumb.addEventListener("click", function () {
+            currentIndex = i;
+            isGridView = false;
+            render();
+          });
+          container.appendChild(thumb);
+        });
+      }
 
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" style="border-top:2px solid #000000;padding:4px 12px;font-size:15px;color:#555555;">
-          <span>visitors <span style="background:#000000;color:#c8c8c8;padding:1px 6px;margin-left:4px;letter-spacing:2px;">004821</span></span>
-        </td>
-      </tr>
-    </table>
-  </div>
+      function navigate(dir) {
+        currentIndex = (currentIndex + dir + IMAGES.length) % IMAGES.length;
+        if (isGridView) isGridView = false;
+        render();
+      }
 
-  <!-- Status bar -->
-  <div style="background:#c0c0c0;border-top:2px solid;border-color:#808080 #fff #fff #808080;padding:1px 4px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-family:'Times New Roman',serif;-webkit-font-smoothing:none;">
-    <span id="status-bar">Ready</span>
-    <span style="border-left:1px solid #808080;padding-left:6px;margin-left:4px;">&#127758; Internet</span>
-  </div>
+      function toggleView() {
+        isGridView = !isGridView;
+        render();
+      }
 
-</div>
+      function render() {
+        const img = IMAGES[currentIndex];
+        const total = IMAGES.length;
+        const num = currentIndex + 1;
 
-<script>
+        document.getElementById("counter").textContent = num + " / " + total;
+        document.getElementById("viewer-title-text").textContent =
+          "\uD83D\uDCF7 " + img.title;
 
-const IMAGES = [
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1097bc8e-6fe3-413d-a468-4a9347cef658_carw_5x4x640.jpg", title: "stills \u2014 001" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1600c982-8870-4366-9031-bdc10e03f7a6_carw_5x4x640.jpg", title: "stills \u2014 002" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/535875fa-cede-4665-a4c5-31360637ffa9_carw_5x4x640.jpg", title: "stills \u2014 003" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/d6b331b0-e520-43a3-b0fa-8915a356c2f3_carw_5x4x640.jpg", title: "stills \u2014 004" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1097bc8e-6fe3-413d-a468-4a9347cef658_carw_5x4x640.jpg", title: "stills \u2014 005" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/1600c982-8870-4366-9031-bdc10e03f7a6_carw_5x4x640.jpg", title: "stills \u2014 006" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/535875fa-cede-4665-a4c5-31360637ffa9_carw_5x4x640.jpg", title: "stills \u2014 007" },
-  { src: "https://cdn.myportfolio.com/8f34bb40c4834b701ac4b5a453c80f35/d6b331b0-e520-43a3-b0fa-8915a356c2f3_carw_5x4x640.jpg", title: "stills \u2014 008" },
-  // To add local images use: { src: "images/photo-001.jpg", title: "your caption" }
-];
+        // Update fake address bar
+        const addrBar = document.querySelector('input[type="text"]');
+        if (addrBar)
+          addrBar.value =
+            "http://www.austinroberthermann.com/stills-viewer.html#" + num;
 
-let currentIndex = 0;
-let isGridView = false;
+        history.replaceState(null, "", "#" + num);
+        document.title = img.title + " \u2014 Microsoft Internet Explorer";
 
-function init() {
-  buildGrid();
-  const hash = parseInt(window.location.hash.replace('#',''), 10);
-  if (!isNaN(hash) && hash >= 1 && hash <= IMAGES.length) {
-    currentIndex = hash - 1;
-  }
-  render();
-}
+        // Highlight active grid thumb
+        document.querySelectorAll(".grid-thumb").forEach(function (t, i) {
+          t.classList.toggle("active-thumb", i === currentIndex);
+        });
 
-function buildGrid() {
-  const container = document.getElementById('grid-container');
-  IMAGES.forEach((img, i) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'grid-thumb';
-    thumb.id = 'thumb-' + i;
-    thumb.innerHTML = '<img src="' + img.src + '" alt="' + img.title + '" loading="lazy"><div class="grid-thumb-label">' + img.title + '</div>';
-    thumb.addEventListener('click', function() {
-      currentIndex = i;
-      isGridView = false;
-      render();
-    });
-    container.appendChild(thumb);
-  });
-}
+        if (isGridView) {
+          document.getElementById("view-single").style.display = "none";
+          document.getElementById("view-grid").style.display = "block";
+          document.getElementById("btn-grid").classList.add("active");
+          document.getElementById("nav-hint").textContent =
+            "click image to view";
+          document.getElementById("status-bar").textContent =
+            "Grid view \u2014 " + total + " images";
+          var activeThumb = document.getElementById("thumb-" + currentIndex);
+          if (activeThumb) activeThumb.scrollIntoView({ block: "nearest" });
+        } else {
+          document.getElementById("view-single").style.display = "flex";
+          document.getElementById("view-grid").style.display = "none";
+          document.getElementById("btn-grid").classList.remove("active");
+          document.getElementById("nav-hint").textContent =
+            "\u2190 use arrow keys \u2192";
 
-function navigate(dir) {
-  currentIndex = (currentIndex + dir + IMAGES.length) % IMAGES.length;
-  if (isGridView) isGridView = false;
-  render();
-}
+          var mainImg = document.getElementById("main-img");
+          mainImg.classList.add("loading");
+          mainImg.src = img.src;
+          mainImg.alt = img.title;
+          mainImg.onload = function () {
+            mainImg.classList.remove("loading");
+          };
 
-function toggleView() {
-  isGridView = !isGridView;
-  render();
-}
+          document.getElementById("img-title").textContent = img.title;
+          var filename = img.src.split("/").pop().split("?")[0];
+          document.getElementById("img-filename").textContent = filename;
+          document.getElementById("status-bar").textContent =
+            img.title + " \u2014 " + num + " of " + total;
+        }
+      }
 
-function render() {
-  const img = IMAGES[currentIndex];
-  const total = IMAGES.length;
-  const num = currentIndex + 1;
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") navigate(1);
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") navigate(-1);
+        else if (e.key === "g" || e.key === "Escape") toggleView();
+      });
 
-  document.getElementById('counter').textContent = num + ' / ' + total;
-  document.getElementById('viewer-title-text').textContent = '\uD83D\uDCF7 ' + img.title;
+      window.addEventListener("hashchange", function () {
+        var hash = parseInt(window.location.hash.replace("#", ""), 10);
+        if (!isNaN(hash) && hash >= 1 && hash <= IMAGES.length) {
+          currentIndex = hash - 1;
+          isGridView = false;
+          render();
+        }
+      });
 
-  // Update fake address bar
-  const addrBar = document.querySelector('input[type="text"]');
-  if (addrBar) addrBar.value = 'http://www.austinroberthermann.com/stills-viewer.html#' + num;
-
-  history.replaceState(null, '', '#' + num);
-  document.title = img.title + ' \u2014 Microsoft Internet Explorer';
-
-  // Highlight active grid thumb
-  document.querySelectorAll('.grid-thumb').forEach(function(t, i) {
-    t.classList.toggle('active-thumb', i === currentIndex);
-  });
-
-  if (isGridView) {
-    document.getElementById('view-single').style.display = 'none';
-    document.getElementById('view-grid').style.display = 'block';
-    document.getElementById('btn-grid').classList.add('active');
-    document.getElementById('nav-hint').textContent = 'click image to view';
-    document.getElementById('status-bar').textContent = 'Grid view \u2014 ' + total + ' images';
-    var activeThumb = document.getElementById('thumb-' + currentIndex);
-    if (activeThumb) activeThumb.scrollIntoView({ block: 'nearest' });
-  } else {
-    document.getElementById('view-single').style.display = 'flex';
-    document.getElementById('view-grid').style.display = 'none';
-    document.getElementById('btn-grid').classList.remove('active');
-    document.getElementById('nav-hint').textContent = '\u2190 use arrow keys \u2192';
-
-    var mainImg = document.getElementById('main-img');
-    mainImg.classList.add('loading');
-    mainImg.src = img.src;
-    mainImg.alt = img.title;
-    mainImg.onload = function() { mainImg.classList.remove('loading'); };
-
-    document.getElementById('img-title').textContent = img.title;
-    var filename = img.src.split('/').pop().split('?')[0];
-    document.getElementById('img-filename').textContent = filename;
-    document.getElementById('status-bar').textContent = img.title + ' \u2014 ' + num + ' of ' + total;
-  }
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
-  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
-  else if (e.key === 'g' || e.key === 'Escape') toggleView();
-});
-
-window.addEventListener('hashchange', function() {
-  var hash = parseInt(window.location.hash.replace('#',''), 10);
-  if (!isNaN(hash) && hash >= 1 && hash <= IMAGES.length) {
-    currentIndex = hash - 1;
-    isGridView = false;
-    render();
-  }
-});
-
-init();
-
-</script>
-</body>
+      init();
+    </script>
+  </body>
 </html>
