@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      http://www.austinroberthermann.com/demyulederby.html - Microsoft Internet
+      http://www.austinroberthermann.com/dream-cruise.html - Microsoft Internet
       Explorer
     </title>
     <style>
@@ -50,8 +50,6 @@
           opacity: 0;
         }
       }
-    </style>
-    <style>
       .lb-window {
         display: none;
         border: 2px solid;
@@ -107,16 +105,15 @@
         background: #b8b8b8;
         padding: 5px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         overflow: hidden;
-        height: 800px;
-        box-sizing: border-box;
       }
       .lb-stage img {
         display: block;
-        width: 100%;
-        height: 100%;
+        height: auto;
+        width: auto;
+        max-width: 100%;
         object-fit: contain;
         image-rendering: auto;
         filter: contrast(1.05) saturate(0.85);
@@ -148,7 +145,7 @@
         <table
           style="width: 100%; border-collapse: collapse; min-height: 480px"
         >
-          <tr>
+          <tr id="header-row">
             <td
               colspan="2"
               style="
@@ -341,14 +338,11 @@
                       href="demyulederby.html"
                       style="
                         font-size: 15px;
-                        color: #000000;
-                        text-decoration: none;
+                        color: #00008b;
+                        text-decoration: underline;
                         display: block;
-                        padding: 0 0 1px 3px;
+                        padding: 0 0 1px 6px;
                         line-height: 1.6;
-                        font-weight: bold;
-                        background: #d0d0c8;
-                        border-left: 3px solid #000000;
                       "
                       >demyulederby</a
                     >
@@ -433,11 +427,14 @@
                       href="dream-cruise.html"
                       style="
                         font-size: 15px;
-                        color: #00008b;
-                        text-decoration: underline;
+                        color: #000000;
+                        text-decoration: none;
                         display: block;
-                        padding: 0 0 1px 6px;
+                        padding: 0 0 1px 3px;
                         line-height: 1.6;
+                        font-weight: bold;
+                        background: #d0d0c8;
+                        border-left: 3px solid #000000;
                       "
                       >dream cruise</a
                     >
@@ -630,6 +627,7 @@
               "
             >
               <div
+                id="gallery-title"
                 style="
                   font-size: 22px;
                   font-weight: bold;
@@ -639,257 +637,10 @@
                   padding-bottom: 4px;
                 "
               >
-                Demyulederby
+                Dream Cruise
               </div>
-              <div style="border: 2px inset #808080; margin-bottom: 12px">
-                <div
-                  style="
-                    position: relative;
-                    padding-bottom: 56.25%;
-                    height: 0;
-                    overflow: hidden;
-                    background: #000;
-                  "
-                >
-                  <video
-                    id="derby-video"
-                    src="https://pub-79aadb2187284b038637161677781b63.r2.dev/demyuleition_derby_v1%20(1080p).mp4"
-                    style="
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      width: 100%;
-                      height: 100%;
-                    "
-                    preload="metadata"
-                  ></video>
-                  <div
-                    id="derby-click"
-                    style="
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      width: 100%;
-                      height: 100%;
-                      cursor: pointer;
-                      display: none;
-                    "
-                    onclick="derbyToggle()"
-                  >
-                    <div
-                      id="derby-pauseind"
-                      style="
-                        display: none;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: #c0c0c0;
-                        border: 2px solid;
-                        border-color: #fff #808080 #808080 #fff;
-                        padding: 10px 20px;
-                        font-size: 28px;
-                        user-select: none;
-                        line-height: 1;
-                      "
-                    >
-                      &#9646;&#9646;
-                    </div>
-                  </div>
-                  <div
-                    id="derby-overlay"
-                    style="
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      width: 100%;
-                      height: 100%;
-                      cursor: pointer;
-                    "
-                    onclick="derbyPlay()"
-                  >
-                    <img
-                      src="assets/motion/demyulederby/a9d321a6-cc05-426c-b312-e207bae5c49a_car_5x4.gif"
-                      style="
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                      "
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div
-                      style="
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: #c0c0c0;
-                        border: 2px solid;
-                        border-color: #fff #808080 #808080 #fff;
-                        padding: 10px 20px;
-                        font-size: 28px;
-                        user-select: none;
-                        line-height: 1;
-                      "
-                    >
-                      &#9654;
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: #c0c0c0;
-                    padding: 3px 4px;
-                    display: flex;
-                    align-items: center;
-                    gap: 3px;
-                  "
-                >
-                  <button
-                    id="derby-playbtn"
-                    onclick="derbyToggle()"
-                    style="
-                      background: #c0c0c0;
-                      border: 2px solid;
-                      border-color: #fff #808080 #808080 #fff;
-                      padding: 1px 8px;
-                      font-size: 13px;
-                      cursor: pointer;
-                      line-height: 1;
-                    "
-                  >
-                    &#9654;
-                  </button>
-                  <div
-                    onclick="derbySeek(event, this)"
-                    style="
-                      flex: 1;
-                      height: 14px;
-                      background: #808080;
-                      border: 2px solid;
-                      border-color: #808080 #fff #fff #808080;
-                      cursor: pointer;
-                      position: relative;
-                    "
-                  >
-                    <div
-                      id="derby-prog"
-                      style="
-                        height: 100%;
-                        width: 0%;
-                        background: #000080;
-                        pointer-events: none;
-                      "
-                    ></div>
-                  </div>
-                  <span
-                    id="derby-time"
-                    style="
-                      font-size: 11px;
-                      white-space: nowrap;
-                      min-width: 72px;
-                      text-align: center;
-                      padding: 0 3px;
-                    "
-                    >0:00 / 0:00</span
-                  ><button
-                    id="derby-volbtn"
-                    onclick="derbyMute()"
-                    style="
-                      background: #c0c0c0;
-                      border: 2px solid;
-                      border-color: #fff #808080 #808080 #fff;
-                      padding: 1px 6px;
-                      font-size: 11px;
-                      cursor: pointer;
-                    "
-                  >
-                    &#128266;</button
-                  ><button
-                    onclick="derbyFS()"
-                    style="
-                      background: #c0c0c0;
-                      border: 2px solid;
-                      border-color: #fff #808080 #808080 #fff;
-                      padding: 1px 6px;
-                      font-size: 11px;
-                      cursor: pointer;
-                    "
-                  >
-                    &#x25A1;
-                  </button>
-                </div>
-              </div>
-              <script>
-                (function () {
-                  var v = document.getElementById("derby-video"),
-                    ov = document.getElementById("derby-overlay"),
-                    pb = document.getElementById("derby-playbtn"),
-                    pr = document.getElementById("derby-prog"),
-                    tm = document.getElementById("derby-time"),
-                    vb = document.getElementById("derby-volbtn"),
-                    cl = document.getElementById("derby-click"),
-                    pi = document.getElementById("derby-pauseind");
-                  function fmt(s) {
-                    var m = Math.floor(s / 60),
-                      ss = Math.floor(s % 60);
-                    return m + ":" + (ss < 10 ? "0" : "") + ss;
-                  }
-                  window.derbyPlay = function () {
-                    v.play();
-                    ov.style.display = "none";
-                    cl.style.display = "";
-                  };
-                  window.derbyToggle = function () {
-                    if (v.paused) {
-                      v.play();
-                      pi.style.display = "none";
-                    } else {
-                      v.pause();
-                      pi.style.display = "";
-                    }
-                  };
-                  window.derbySeek = function (e, el) {
-                    var r = el.getBoundingClientRect();
-                    if (v.duration)
-                      v.currentTime =
-                        ((e.clientX - r.left) / r.width) * v.duration;
-                  };
-                  window.derbyMute = function () {
-                    v.muted = !v.muted;
-                    vb.innerHTML = v.muted ? "&#128263;" : "&#128266;";
-                  };
-                  window.derbyFS = function () {
-                    if (v.requestFullscreen) v.requestFullscreen();
-                    else if (v.webkitRequestFullscreen)
-                      v.webkitRequestFullscreen();
-                  };
-                  v.addEventListener("play", function () {
-                    pb.innerHTML = "&#9646;&#9646;";
-                    pi.style.display = "none";
-                  });
-                  v.addEventListener("pause", function () {
-                    pb.innerHTML = "&#9654;";
-                    pi.style.display = "";
-                  });
-                  v.addEventListener("ended", function () {
-                    pb.innerHTML = "&#9654;";
-                    ov.style.display = "";
-                    cl.style.display = "none";
-                    pi.style.display = "none";
-                  });
-                  v.addEventListener("timeupdate", function () {
-                    if (v.duration) {
-                      pr.style.width = (v.currentTime / v.duration) * 100 + "%";
-                      tm.textContent =
-                        fmt(v.currentTime) + " / " + fmt(v.duration);
-                    }
-                  });
-                })();
-              </script>
               <div
+                id="gallery-desc"
                 style="
                   font-size: 16px;
                   line-height: 1.6;
@@ -897,132 +648,9 @@
                   max-width: 640px;
                 "
               >
-                <p>Got to contribute a log to Dan's little fires.</p>
               </div>
-              <div id="arh-inserts">
-                <div style="position: relative; min-height: 800px">
-                  <div
-                    id="motion-grid"
-                    style="column-count: 4; column-gap: 6px; margin-top: 16px"
-                  >
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(0)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/demyulederby/a9d321a6-cc05-426c-b312-e207bae5c49a_car_5x4.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    id="lb"
-                    class="lb-window"
-                    style="position: absolute; top: 0; left: 0; width: 100%"
-                  >
-                    <div class="lb-titlebar">
-                      <span id="lb-title">📷 Demyule Derby</span>
-                      <div class="lb-titlebar-btns">
-                        <span class="lb-titlebar-btn">_</span
-                        ><span
-                          class="lb-titlebar-btn"
-                          onclick="window.open(imgs[cur], '_blank')"
-                          title="Open full size"
-                          >&#x25A1;</span
-                        ><span class="lb-titlebar-btn" onclick="lbClose()"
-                          >&#x2715;</span
-                        >
-                      </div>
-                    </div>
-                    <div class="lb-toolbar">
-                      <span class="lb-btn" onclick="lbPrev()">&#9664;</span
-                      ><span
-                        id="lb-counter"
-                        style="padding: 0 6px; font-size: 13px"
-                        >1 / 1</span
-                      ><span class="lb-btn" onclick="lbNext()">&#9654;</span>
-                    </div>
-                    <div class="lb-stage">
-                      <img
-                        id="lb-img"
-                        src=""
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  </div>
-                  <script>
-                    var imgs = [
-                      "assets/motion/demyulederby/a9d321a6-cc05-426c-b312-e207bae5c49a_car_5x4.gif",
-                    ];
-                    var cur = 0;
-                    function lbOpen(i) {
-                      cur = i;
-                      document.getElementById("motion-grid").style.visibility =
-                        "hidden";
-                      var lb = document.getElementById("lb");
-                      lb.style.display = "block";
-                      lb.scrollIntoView({
-                        behavior: "smooth",
-                        block: "nearest",
-                      });
-                      lbShow();
-                    }
-                    function lbShow() {
-                      document.getElementById("lb-img").src = imgs[cur];
-                      document.getElementById("lb-counter").textContent =
-                        cur + 1 + " / " + imgs.length;
-                      document.getElementById("lb-title").textContent =
-                        "\ud83d\udcf7 Demyule Derby" +
-                        " — " +
-                        (cur + 1) +
-                        " / " +
-                        imgs.length;
-                    }
-                    function lbClose() {
-                      document.getElementById("lb").style.display = "none";
-                      document.getElementById("motion-grid").style.visibility =
-                        "";
-                    }
-                    function lbNext() {
-                      cur = (cur + 1) % imgs.length;
-                      lbShow();
-                    }
-                    function lbPrev() {
-                      cur = (cur - 1 + imgs.length) % imgs.length;
-                      lbShow();
-                    }
-                    document.addEventListener("keydown", function (e) {
-                      if (
-                        document.getElementById("lb").style.display === "none"
-                      )
-                        return;
-                      if (e.key === "ArrowRight") lbNext();
-                      if (e.key === "ArrowLeft") lbPrev();
-                      if (e.key === "Escape") lbClose();
-                    });
-                  </script>
-                </div>
-              </div>
-              <!-- /arh-inserts -->
+              <table id="photo-grid" style="width:100%;border-collapse:separate;border-spacing:6px;margin-top:10px;"><tr><td colspan="6" style="padding:20px;text-align:center;color:#808080;font-size:14px;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;">No photos yet — add images to this folder and run build-galleries.py</td></tr></table><div id="lb" class="lb-window"><div class="lb-titlebar"><span id="lb-title">&#x1F4F7; Image Viewer</span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn">_</span><span class="lb-titlebar-btn" onclick="window.open(imgs[cur],'_blank')" title="Open full size">&#x25A1;</span><span class="lb-titlebar-btn" onclick="lbClose()">&#x2715;</span></div></div><div class="lb-toolbar"><span class="lb-btn" onclick="lbPrev()">&#9664;</span><span id="lb-counter" style="padding:0 6px;font-family:'Times New Roman',serif;font-size:13px;-webkit-font-smoothing:none;">0 / 0</span><span class="lb-btn" onclick="lbNext()">&#9654;</span></div><div class="lb-stage"><img id="lb-img" src="" alt="" loading="lazy" decoding="async"></div></div><script>var imgs=[];var cur=0;function lbFit(){var lb=document.getElementById('lb');var stage=lb.querySelector('.lb-stage');var img=document.getElementById('lb-img');var top=stage.getBoundingClientRect().top;var h='calc(100vh - '+(top+5)+'px)';var imgH='calc(100vh - '+(top+15)+'px)';stage.style.height=h;stage.style.maxHeight='';img.style.maxHeight=imgH;img.style.width='auto';img.style.maxWidth='calc(100% - 10px)';function fit(){if(img.naturalWidth>img.naturalHeight){stage.style.height='auto';stage.style.maxHeight=h;}}if(img.complete&&img.naturalWidth>0){fit();}else{img.onload=fit;}}function lbOpen(i){cur=i;document.getElementById('photo-grid').style.display='none';var t=document.getElementById('gallery-title');if(t)t.style.display='none';var d=document.getElementById('gallery-desc');if(d)d.style.display='none';document.getElementById('lb').style.display='block';window.scrollTo(0,0);lbShow();requestAnimationFrame(lbFit);}function lbShow(){document.getElementById('lb-img').src=imgs[cur];document.getElementById('lb-counter').textContent=(cur+1)+' / '+imgs.length;document.getElementById('lb-title').textContent='\uD83D\uDCF7 Dream Cruise \u2014 '+(cur+1)+' / '+imgs.length;}function lbClose(){document.getElementById('lb').style.display='none';var t=document.getElementById('gallery-title');if(t)t.style.display='';var d=document.getElementById('gallery-desc');if(d)d.style.display='';document.getElementById('photo-grid').style.display='table';}function lbNext(){cur=(cur+1)%imgs.length;lbShow();requestAnimationFrame(lbFit);}function lbPrev(){cur=(cur-1+imgs.length)%imgs.length;lbShow();requestAnimationFrame(lbFit);}document.addEventListener('keydown',function(e){var lb=document.getElementById('lb');if(lb.style.display==='none')return;if(e.key==='ArrowRight')lbNext();if(e.key==='ArrowLeft')lbPrev();if(e.key==='Escape')lbClose();});</script>
+              <div id="lb" class="lb-window" style="display:none"></div>
             </td>
           </tr>
         </table>

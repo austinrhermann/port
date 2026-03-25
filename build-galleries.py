@@ -19,12 +19,15 @@ REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Map gallery HTML filename → (page title, folder, description paragraph)
 GALLERIES = {
-    "nature.html":       ("Plants",    "assets/photography/nature",       "All photos made in home darkroom with a <a href='deardorff.html' style='color:#00008b;text-decoration:underline;'>Deardorff Studio</a> camera."),
-    "article-one.html":  ("Article One","assets/photography/article-one", "Large-format chromogenic prints of everyday eyewear."),
-    "2021-2025.html":    ("2021–2025", "assets/photography/2021-2025",    ""),
-    "2016-2020.html":    ("2016–2020", "assets/photography/2016-2020",    ""),
-    "2011-2015.html":    ("2011–2015", "assets/photography/2011-2015",    ""),
-    "2000-2010.html":    ("2000–2010", "assets/photography/2000-2010",    ""),
+    "nature.html":        ("Fauna",       "assets/photography/nature",        "All photos made in home darkroom with a Deardorff Studio camera."),
+    "portraits.html":     ("Portraits",   "assets/photography/portraits",     ""),
+    "huron.html":         ("Huron",       "assets/photography/huron",         ""),
+    "dream-cruise.html":  ("Dream Cruise","assets/photography/dream-cruise",  ""),
+    "article-one.html":   ("Article One", "assets/photography/article-one",   "Large-format chromogenic prints of everyday eyewear."),
+    "2021-2025.html":     ("2021–2025",   "assets/photography/2021-2025",     ""),
+    "2016-2020.html":     ("2016–2020",   "assets/photography/2016-2020",     ""),
+    "2011-2015.html":     ("2011–2015",   "assets/photography/2011-2015",     ""),
+    "2000-2010.html":     ("2000–2010",   "assets/photography/2000-2010",     ""),
 }
 
 IMG_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif'}
@@ -81,14 +84,15 @@ def build_viewer_script(title, images, folder):
         f'<span id="lb-counter" style="padding:0 6px;font-family:\'Times New Roman\',serif;font-size:13px;-webkit-font-smoothing:none;">{counter_text}</span>'
         f'<span class="lb-btn" onclick="lbNext()">&#9654;</span>'
         f'</div>'
-        f'<div class="lb-stage"><img id="lb-img" src="" alt=""></div>'
+        f'<div class="lb-stage"><img id="lb-img" src="" alt="" loading="lazy" decoding="async"></div>'
         f'</div>'
         f'<script>var imgs={imgs_array};var cur=0;'
-        f'function lbOpen(i){{cur=i;document.getElementById(\'photo-grid\').style.display=\'none\';document.getElementById(\'lb\').style.display=\'block\';lbShow();}}'
+        f'function lbFit(){{var lb=document.getElementById(\'lb\');var stage=lb.querySelector(\'.lb-stage\');var img=document.getElementById(\'lb-img\');var top=stage.getBoundingClientRect().top;var h=\'calc(100vh - \'+(top+5)+\'px)\';var imgH=\'calc(100vh - \'+(top+15)+\'px)\';stage.style.height=h;stage.style.maxHeight=\'\';img.style.maxHeight=imgH;img.style.width=\'auto\';img.style.maxWidth=\'calc(100% - 10px)\';function fit(){{if(img.naturalWidth>img.naturalHeight){{stage.style.height=\'auto\';stage.style.maxHeight=h;}}}}if(img.complete&&img.naturalWidth>0){{fit();}}else{{img.onload=fit;}}}}'
+        f'function lbOpen(i){{cur=i;document.getElementById(\'photo-grid\').style.display=\'none\';var t=document.getElementById(\'gallery-title\');if(t)t.style.display=\'none\';var d=document.getElementById(\'gallery-desc\');if(d)d.style.display=\'none\';document.getElementById(\'lb\').style.display=\'block\';window.scrollTo(0,0);lbShow();requestAnimationFrame(lbFit);}}'
         f'function lbShow(){{document.getElementById(\'lb-img\').src=imgs[cur];document.getElementById(\'lb-counter\').textContent=(cur+1)+\' / \'+imgs.length;document.getElementById(\'lb-title\').textContent=\'\\uD83D\\uDCF7 {escaped_title} \\u2014 \'+(cur+1)+\' / \'+imgs.length;}}'
-        f'function lbClose(){{document.getElementById(\'lb\').style.display=\'none\';document.getElementById(\'photo-grid\').style.display=\'table\';}}'
-        f'function lbNext(){{cur=(cur+1)%imgs.length;lbShow();}}'
-        f'function lbPrev(){{cur=(cur-1+imgs.length)%imgs.length;lbShow();}}'
+        f'function lbClose(){{document.getElementById(\'lb\').style.display=\'none\';var t=document.getElementById(\'gallery-title\');if(t)t.style.display=\'\';var d=document.getElementById(\'gallery-desc\');if(d)d.style.display=\'\';document.getElementById(\'photo-grid\').style.display=\'table\';}}'
+        f'function lbNext(){{cur=(cur+1)%imgs.length;lbShow();requestAnimationFrame(lbFit);}}'
+        f'function lbPrev(){{cur=(cur-1+imgs.length)%imgs.length;lbShow();requestAnimationFrame(lbFit);}}'
         f'document.addEventListener(\'keydown\',function(e){{var lb=document.getElementById(\'lb\');if(lb.style.display===\'none\')return;if(e.key===\'ArrowRight\')lbNext();if(e.key===\'ArrowLeft\')lbPrev();if(e.key===\'Escape\')lbClose();}});</script>'
     )
 
@@ -116,8 +120,12 @@ def update_gallery(html_file, title, folder_rel, description):
     viewer_html = build_viewer_script(title, images, folder_rel)
 
     # --- REPLACE GRID ---
-    # Find <table id="photo-grid"  ...  </table>
-    grid_start = html.find('<table id="photo-grid"')
+    # Find <table ... id="photo-grid" ... (handles multi-line tags)
+    id_pos = html.find('id="photo-grid"')
+    if id_pos == -1:
+        print(f"  ⚠️  Could not find photo-grid table in {html_file}")
+        return
+    grid_start = html.rfind('<table', 0, id_pos)
     if grid_start == -1:
         print(f"  ⚠️  Could not find photo-grid table in {html_file}")
         return

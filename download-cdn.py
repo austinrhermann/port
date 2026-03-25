@@ -30,7 +30,6 @@ PAGE_FOLDER_MAP = {
     "2011-2015":              "assets/photography/2011-2015",
     "2000-2010":              "assets/photography/2000-2010",
     # Building/Other pages
-    "deardorff":              "assets/building/deardorff",
     "chromogenic-process":    "assets/building/chromogenic-process",
     "durst-printo":           "assets/building/durst-printo",
     "sunvisor":               "assets/building/sunvisor",
