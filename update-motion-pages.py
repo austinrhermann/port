@@ -79,7 +79,7 @@ PAGES = [
 
 
 def get_images(slug):
-    folder = os.path.join(REPO_ROOT, 'Assets-Local', slug)
+    folder = os.path.join(REPO_ROOT, 'assets', 'motion', slug)
     if not os.path.isdir(folder):
         return []
     return sorted([
@@ -131,7 +131,7 @@ def build_image_grid(slug, images):
 
     items = []
     for idx, fname in enumerate(images):
-        src = f'Assets-Local/{slug}/{fname}'
+        src = f'assets/motion/{slug}/{fname}'
         items.append(
             f'<div style="{item_style}">'
             f'<div onclick="lbOpen({idx})" style="{thumb_style}">'
@@ -153,7 +153,7 @@ def build_viewer(slug, images, page_title):
     if not images:
         return ''
 
-    srcs = [f'Assets-Local/{slug}/{f}' for f in images]
+    srcs = [f'assets/motion/{slug}/{f}' for f in images]
     imgs_json = json.dumps(srcs)
     title_js  = json.dumps(f'\U0001f4f7 {page_title}')
     count     = len(images)

@@ -20,33 +20,34 @@ REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Map page slug → local save folder
 # Photo gallery pages go into Images-* for use by build-galleries.py
-# Other pages go into Assets-Local/{slug}/
+# Other pages go into assets/{slug}/
 PAGE_FOLDER_MAP = {
-    "nature":                 "Images-Nature",
-    "article-one":            "Images-Article-One",
-    "2020":                   "Images-2020",
-    "2019-1":                 "Images-2019",
-    "2011-2015":              "Images-2011",
-    "2000-2017":              "Images-2000",
+    # Photography pages
+    "nature":                 "assets/photography/nature",
+    "article-one":            "assets/photography/article-one",
+    "2021-2025":              "assets/photography/2021-2025",
+    "2016-2020":              "assets/photography/2016-2020",
+    "2011-2015":              "assets/photography/2011-2015",
+    "2000-2010":              "assets/photography/2000-2010",
     # Building/Other pages
-    "deardorff":              "Assets-Local/deardorff",
-    "chromogenic-process":    "Assets-Local/chromogenic-process",
-    "durst-printo":           "Assets-Local/durst-printo",
-    "sunvisor":               "Assets-Local/sunvisor",
+    "deardorff":              "assets/building/deardorff",
+    "chromogenic-process":    "assets/building/chromogenic-process",
+    "durst-printo":           "assets/building/durst-printo",
+    "sunvisor":               "assets/building/sunvisor",
     # Motion pages
-    "sanjam":                 "Assets-Local/sanjam",
-    "all-kinds-of-planes":    "Assets-Local/all-kinds-of-planes",
-    "all-kinds-of-cars":      "Assets-Local/all-kinds-of-cars",
-    "magic-tricks":           "Assets-Local/magic-tricks",
-    "figure-03-volcanos":     "Assets-Local/figure-03-volcanos",
-    "figure-02-earths-layers":"Assets-Local/figure-02-earths-layers",
-    "figure-01-limestone-cave":"Assets-Local/figure-01-limestone-cave",
-    "working-in-teams":       "Assets-Local/working-in-teams",
-    "google-dots":            "Assets-Local/google-dots",
-    "fp-blend":               "Assets-Local/fp-blend",
-    "demyulederby":           "Assets-Local/demyulederby",
-    "poo-power":              "Assets-Local/poo-power",
-    "fashion":                "Assets-Local/fashion",
+    "sanjam":                 "assets/motion/sanjam",
+    "all-kinds-of-planes":    "assets/motion/all-kinds-of-planes",
+    "all-kinds-of-cars":      "assets/motion/all-kinds-of-cars",
+    "magic-tricks":           "assets/motion/magic-tricks",
+    "figure-03-volcanos":     "assets/motion/figure-03-volcanos",
+    "figure-02-earths-layers":"assets/motion/figure-02-earths-layers",
+    "figure-01-limestone-cave":"assets/motion/figure-01-limestone-cave",
+    "working-in-teams":       "assets/motion/working-in-teams",
+    "google-dots":            "assets/motion/google-dots",
+    "fp-blend":               "assets/motion/fp-blend",
+    "demyulederby":           "assets/motion/demyulederby",
+    "poo-power":              "assets/motion/poo-power",
+    "fashion":                "assets/motion/fashion",
 }
 
 CDN_PATTERN = re.compile(

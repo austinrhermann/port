@@ -19,12 +19,12 @@ REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Map gallery HTML filename → (page title, folder, description paragraph)
 GALLERIES = {
-    "nature.html":       ("Plants",    "Images-Nature",    "All photos made in home darkroom with a <a href='deardorff.html' style='color:#00008b;text-decoration:underline;'>Deardorff Studio</a> camera."),
-    "article-one.html":  ("Article One","Images-Article-One","Large-format chromogenic prints of everyday eyewear."),
-    "2021-2025.html":    ("2021–2025", "Images-2021-2025",  ""),
-    "2016-2020.html":    ("2016–2020", "Images-2016-2020",  ""),
-    "2011-2015.html":    ("2011–2015", "Images-2011-2015",  ""),
-    "2000-2010.html":    ("2000–2010", "Images-2000-2010",  ""),
+    "nature.html":       ("Plants",    "assets/photography/nature",       "All photos made in home darkroom with a <a href='deardorff.html' style='color:#00008b;text-decoration:underline;'>Deardorff Studio</a> camera."),
+    "article-one.html":  ("Article One","assets/photography/article-one", "Large-format chromogenic prints of everyday eyewear."),
+    "2021-2025.html":    ("2021–2025", "assets/photography/2021-2025",    ""),
+    "2016-2020.html":    ("2016–2020", "assets/photography/2016-2020",    ""),
+    "2011-2015.html":    ("2011–2015", "assets/photography/2011-2015",    ""),
+    "2000-2010.html":    ("2000–2010", "assets/photography/2000-2010",    ""),
 }
 
 IMG_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif'}
