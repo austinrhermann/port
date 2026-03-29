@@ -24,6 +24,7 @@ GALLERIES = {
     "huron.html":         ("Huron",       "assets/photography/huron",         ""),
     "dream-cruise.html":  ("Dream Cruise","assets/photography/dream-cruise",  ""),
     "article-one.html":   ("Article One", "assets/photography/article-one",   "Large-format chromogenic prints of everyday eyewear."),
+    "housing.html":       ("Housing",     "assets/photography/housing",        ""),
     "2021-2025.html":     ("2021–2025",   "assets/photography/2021-2025",     ""),
     "2016-2020.html":     ("2016–2020",   "assets/photography/2016-2020",     ""),
     "2011-2015.html":     ("2011–2015",   "assets/photography/2011-2015",     ""),

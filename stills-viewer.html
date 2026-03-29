@@ -584,6 +584,20 @@
                   </li>
                   <li style="margin: 0; padding: 0">
                     <a
+                      href="housing.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >housing</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
                       href="2021-2025.html"
                       style="
                         font-size: 15px;
@@ -936,7 +950,7 @@
             "http://www.austinroberthermann.com/stills-viewer.html#" + num;
 
         history.replaceState(null, "", "#" + num);
-        document.title = img.title + " \u2014 Microsoft Internet Explorer";
+        document.title = img.title;
 
         // Highlight active grid thumb
         document.querySelectorAll(".grid-thumb").forEach(function (t, i) {

@@ -1,0 +1,118 @@
+<!--
+  ============================================================
+  RETRO HIT COUNTER  —  Windows 98 / Netscape Navigator era
+  ============================================================
+  SETUP:
+  1. Free account at https://jsonbin.io
+  2. New bin → content:  { "count": 0 }
+  3. Replace YOUR_API_KEY and YOUR_BIN_ID below
+  ============================================================
+-->
+
+<!-- Paste inside <head> or your stylesheet -->
+<style>
+  .hc-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #000000;
+  }
+
+  /* Raised Win98 outer bezel */
+  .hc-bezel {
+    background: #c0c0c0;
+    border-top:    2px solid #ffffff;
+    border-left:   2px solid #ffffff;
+    border-bottom: 2px solid #808080;
+    border-right:  2px solid #808080;
+    padding: 3px 5px;
+  }
+
+  /* Sunken inner well */
+  .hc-well {
+    background: #000000;
+    border-top:    2px solid #808080;
+    border-left:   2px solid #808080;
+    border-bottom: 2px solid #dfdfdf;
+    border-right:  2px solid #dfdfdf;
+    padding: 2px 6px;
+    display: inline-flex;
+    gap: 1px;
+  }
+
+  .hc-digit {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00dd33;
+    text-shadow: 0 0 5px #00ff44;
+    min-width: 13px;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  /* Dim while loading */
+  .hc-loading .hc-digit {
+    color: #003311;
+    text-shadow: none;
+  }
+</style>
+
+<!-- Paste in your page body where you want the counter -->
+<span class="hc-wrap">
+  You are visitor number
+  <span class="hc-bezel">
+    <span class="hc-well hc-loading" id="hitCounterDisplay">
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+      <span class="hc-digit">0</span>
+    </span>
+  </span>
+  to this page!
+</span>
+
+<!-- Paste just before </body> -->
+<script>
+(function () {
+  // ── Configure ──────────────────────────────────────────────
+  var API_KEY = "$2a$10$mm0TUo8g07gXpqvqniM6R.GhJxad4Hv85MQrRwl/nCLY/KQvJrA0G";   // jsonbin.io Master Key
+  var BIN_ID  = "69c59150c3097a1dd56372dc";   // bin ID for the counter
+  var DIGITS  = 7;
+  // ──────────────────────────────────────────────────────────
+
+  var BASE    = "https://api.jsonbin.io/v3/b/" + BIN_ID;
+  var HEADERS = { "Content-Type": "application/json", "X-Master-Key": API_KEY };
+
+  function renderCount(n) {
+    var display  = document.getElementById("hitCounterDisplay");
+    display.classList.remove("hc-loading");
+    var str      = String(n).padStart(DIGITS, "0").slice(-DIGITS);
+    var digitEls = display.querySelectorAll(".hc-digit");
+    str.split("").forEach(function(ch, i) { digitEls[i].textContent = ch; });
+  }
+
+  async function increment() {
+    try {
+      var r = await fetch(BASE + "/latest", { headers: HEADERS });
+      var d = await r.json();
+      var n = (d.record.count || 0) + 1;
+      await fetch(BASE, {
+        method: "PUT",
+        headers: HEADERS,
+        body: JSON.stringify({ count: n })
+      });
+      renderCount(n);
+    } catch(e) {
+      renderCount(0);
+    }
+  }
+
+  increment();
+})();
+</script>
