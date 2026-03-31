@@ -130,6 +130,7 @@
         border-color: #fff #808080 #808080 #fff;
         box-shadow: 1px 1px 0 #000;
         margin: 0;
+        padding-bottom: 30px;
       "
     >
       <!-- PAGE AREA -->
@@ -643,18 +644,6 @@
                 background: #c8c8c8;
               "
             >
-              <div
-                style="
-                  font-size: 22px;
-                  font-weight: bold;
-                  color: #000000;
-                  margin-bottom: 10px;
-                  border-bottom: 1px solid #a0a0a0;
-                  padding-bottom: 4px;
-                "
-              >
-                Google Dots
-              </div>
               <div style="border: 2px inset #808080; margin-bottom: 12px">
                 <div
                   style="
@@ -723,7 +712,7 @@
                     onclick="gdotsPlay()"
                   >
                     <img
-                      src="assets/motion/google-dots/ac59442e-f51f-4781-ab68-2966b693037e_car_5x4.gif"
+                      src="assets/thumbs/GCL_thumb.jpg"
                       style="
                         width: 100%;
                         height: 100%;
@@ -908,358 +897,61 @@
                   font-size: 16px;
                   line-height: 1.6;
                   margin-bottom: 16px;
-                  max-width: 640px;
+                  max-width: 1200px;
                 "
               >
                 <p>
-                  Spent the better part of 8 months working internally at
-                  Google's Creative Lab while they updated their brand.
+                  I worked with the team in house at Google's Creative Lab from 2014-2015. 
+                  For about nine months I helped build the animated dot systems and behavior for the rebrand while animating thousands of dots. 
+                  At first everyone was very upset at the new logo and them promptly forgot and moved on. 
                 </p>
               </div>
               <div id="arh-inserts">
+                <!-- Video players -->
+                <div style="display: flex; gap: 10px; margin-bottom: 10px">
+                  <!-- Player 1: gdoodle01 -->
+                  <div style="flex: 1; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                    <div class="lb-titlebar">
+                      <span></span>
+                      <div class="lb-titlebar-btns">
+                        <span class="lb-titlebar-btn" onclick="gd1FS()" style="cursor:pointer;">&#x25A1;</span>
+                      </div>
+                    </div>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                      <video id="gd1-video" src="assets/motion/google-dots/gdoodle01.mp4" style="position:absolute;top:0;left:0;width:100%;height:100%;" autoplay muted loop preload="metadata"></video>
+                    </div>
+                  </div>
+                  <script>(function(){var v=document.getElementById("gd1-video");window.gd1FS=function(){if(v.requestFullscreen)v.requestFullscreen();else if(v.webkitRequestFullscreen)v.webkitRequestFullscreen();};})();</script>
+                  <!-- Player 2: gdots01 -->
+                  <div style="flex: 1; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                    <div class="lb-titlebar">
+                      <span></span>
+                      <div class="lb-titlebar-btns">
+                        <span class="lb-titlebar-btn" onclick="gd2FS()" style="cursor:pointer;">&#x25A1;</span>
+                      </div>
+                    </div>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                      <video id="gd2-video" src="assets/motion/google-dots/gdots01.mp4" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" autoplay muted loop preload="metadata"></video>
+                    </div>
+                  </div>
+                  <script>(function(){var v=document.getElementById("gd2-video");window.gd2FS=function(){if(v.requestFullscreen)v.requestFullscreen();else if(v.webkitRequestFullscreen)v.webkitRequestFullscreen();};})();</script>
+                </div>
                 <div style="position: relative; min-height: 800px">
                   <div
                     id="motion-grid"
-                    style="column-count: 4; column-gap: 6px; margin-top: 16px"
+                    style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 16px"
                   >
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(0)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/2cfbe9c1-c03a-451f-9e20-b3e2e45cb1fa_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(1)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/40b75af6-256a-41f0-9d2a-c13df4d0ecec_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(2)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/45db3bea-67f6-438a-a432-b9411b13bf13_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(3)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/5f452c93-19fd-46ee-b9dc-7691b0737e07_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(4)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/64d39e39-1783-4f45-89c3-b6b81b8a6859_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(5)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/77824dd9-91a3-4a1a-b75d-5c15bda7ca8e_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(6)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/958c43a0-2be5-4718-95dc-e131257af259_rw_600.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(7)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/9a08c122-02af-46c7-b7d6-206e25c8974d_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(8)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/ac59442e-f51f-4781-ab68-2966b693037e_car_5x4.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(9)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/c9838308-dd3d-49d1-8fda-faf48ff3381d_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(10)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/cb422942-e247-47d9-9036-53ad036734ff_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(11)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/fd78ff09-27d1-4acd-a212-8f44a5e3627a_rw_1200.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div style="break-inside: avoid; margin-bottom: 6px">
-                      <div
-                        onclick="lbOpen(12)"
-                        style="
-                          cursor: pointer;
-                          border: 2px solid;
-                          border-color: #808080 #fff #fff #808080;
-                          background: #b8b8b0;
-                          overflow: hidden;
-                        "
-                      >
-                        <img
-                          src="assets/motion/google-dots/ff18adf0-713f-401a-a050-6452a2f9e16d_rw_1920.gif"
-                          alt=""
-                          style="
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            image-rendering: auto;
-                            filter: contrast(1.05) saturate(0.85);
-                          "
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
+                    <div style=""><div onclick="lbOpen(0)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00001.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(1)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00002.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(2)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00003.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(3)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00004.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(4)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00005.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(5)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00006.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(6)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00007.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(7)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00008.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(8)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00010.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(9)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00011.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
+                    <div style=""><div onclick="lbOpen(10)" style="cursor:pointer;border:2px solid;border-color:#808080 #fff #fff #808080;background:#b8b8b0;overflow:hidden;"><img src="assets/motion/google-dots/dots00012.gif" alt="" style="width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;filter:contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"/></div></div>
                   </div>
                   <div
                     id="lb"
@@ -1285,7 +977,7 @@
                       ><span
                         id="lb-counter"
                         style="padding: 0 6px; font-size: 13px"
-                        >1 / 13</span
+                        >1 / 11</span
                       ><span class="lb-btn" onclick="lbNext()">&#9654;</span>
                     </div>
                     <div class="lb-stage">
@@ -1300,19 +992,17 @@
                   </div>
                   <script>
                     var imgs = [
-                      "assets/motion/google-dots/2cfbe9c1-c03a-451f-9e20-b3e2e45cb1fa_rw_1200.gif",
-                      "assets/motion/google-dots/40b75af6-256a-41f0-9d2a-c13df4d0ecec_rw_1200.gif",
-                      "assets/motion/google-dots/45db3bea-67f6-438a-a432-b9411b13bf13_rw_1200.gif",
-                      "assets/motion/google-dots/5f452c93-19fd-46ee-b9dc-7691b0737e07_rw_1200.gif",
-                      "assets/motion/google-dots/64d39e39-1783-4f45-89c3-b6b81b8a6859_rw_1200.gif",
-                      "assets/motion/google-dots/77824dd9-91a3-4a1a-b75d-5c15bda7ca8e_rw_1200.gif",
-                      "assets/motion/google-dots/958c43a0-2be5-4718-95dc-e131257af259_rw_600.gif",
-                      "assets/motion/google-dots/9a08c122-02af-46c7-b7d6-206e25c8974d_rw_1200.gif",
-                      "assets/motion/google-dots/ac59442e-f51f-4781-ab68-2966b693037e_car_5x4.gif",
-                      "assets/motion/google-dots/c9838308-dd3d-49d1-8fda-faf48ff3381d_rw_1200.gif",
-                      "assets/motion/google-dots/cb422942-e247-47d9-9036-53ad036734ff_rw_1200.gif",
-                      "assets/motion/google-dots/fd78ff09-27d1-4acd-a212-8f44a5e3627a_rw_1200.gif",
-                      "assets/motion/google-dots/ff18adf0-713f-401a-a050-6452a2f9e16d_rw_1920.gif",
+                      "assets/motion/google-dots/dots00001.gif",
+                      "assets/motion/google-dots/dots00002.gif",
+                      "assets/motion/google-dots/dots00003.gif",
+                      "assets/motion/google-dots/dots00004.gif",
+                      "assets/motion/google-dots/dots00005.gif",
+                      "assets/motion/google-dots/dots00006.gif",
+                      "assets/motion/google-dots/dots00007.gif",
+                      "assets/motion/google-dots/dots00008.gif",
+                      "assets/motion/google-dots/dots00010.gif",
+                      "assets/motion/google-dots/dots00011.gif",
+                      "assets/motion/google-dots/dots00012.gif",
                     ];
                     var cur = 0;
                     function lbOpen(i) {
