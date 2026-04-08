@@ -2,11 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/webp" href="assets/thumbs/gifs/2017_25.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      http://www.austinroberthermann.com/sunvisor.html - Microsoft Internet
-      Explorer
-    </title>
+    <title>arh/sunvisor</title>
     <style>
       html {
         background: #6a6a6a;
@@ -40,6 +38,28 @@
         background: #000080 !important;
         color: #fff !important;
         text-decoration: none !important;
+      }
+      .lb-titlebar {
+        background: #565656;
+        color: #fff;
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: bold;
+        user-select: none;
+      }
+      .lb-titlebar-btns { display: flex; gap: 2px; }
+      .lb-titlebar-btn {
+        background: #c0c0c0;
+        color: #000;
+        border: 1px solid;
+        border-color: #fff #808080 #808080 #fff;
+        font-size: 10px;
+        padding: 0 4px;
+        line-height: 14px;
+        cursor: pointer;
       }
       @keyframes blink {
         0%,
@@ -88,7 +108,7 @@
               "
             >
               <a
-                href="index.html"
+                href="everything.html"
                 style="
                   font-size: 24px;
                   font-weight: bold;
@@ -111,7 +131,7 @@
             >
               <div style="margin-bottom: 14px">
                 <a
-                  href="index.html"
+                  href="motion-index.html"
                   style="
                     font-size: 13px;
                     font-weight: bold;
@@ -212,6 +232,20 @@
                   </li>
                   <li style="margin: 0; padding: 0">
                     <a
+                      href="google-dots.html"
+                      style="
+                        font-size: 15px;
+                        color: #00008b;
+                        text-decoration: underline;
+                        display: block;
+                        padding: 0 0 1px 6px;
+                        line-height: 1.6;
+                      "
+                      >google dots</a
+                    >
+                  </li>
+                  <li style="margin: 0; padding: 0">
+                    <a
                       href="magic-tricks.html"
                       style="
                         font-size: 15px;
@@ -226,7 +260,7 @@
                   </li>
                   <li style="margin: 0; padding: 0">
                     <a
-                      href="working-in-teams.html"
+                      href="poo-power.html"
                       style="
                         font-size: 15px;
                         color: #00008b;
@@ -235,21 +269,7 @@
                         padding: 0 0 1px 6px;
                         line-height: 1.6;
                       "
-                      >working in teams</a
-                    >
-                  </li>
-                  <li style="margin: 0; padding: 0">
-                    <a
-                      href="google-dots.html"
-                      style="
-                        font-size: 15px;
-                        color: #00008b;
-                        text-decoration: underline;
-                        display: block;
-                        padding: 0 0 1px 6px;
-                        line-height: 1.6;
-                      "
-                      >google dots</a
+                      >poo power</a
                     >
                   </li>
                   <li style="margin: 0; padding: 0">
@@ -282,7 +302,7 @@
                   </li>
                   <li style="margin: 0; padding: 0">
                     <a
-                      href="poo-power.html"
+                      href="working-in-teams.html"
                       style="
                         font-size: 15px;
                         color: #00008b;
@@ -291,14 +311,14 @@
                         padding: 0 0 1px 6px;
                         line-height: 1.6;
                       "
-                      >poo power</a
+                      >working in teams</a
                     >
                   </li>
                 </ul>
               </div>
               <div style="margin-bottom: 14px">
                 <a
-                  href="photography-hub.html"
+                  href="photography-index.html"
                   style="
                     font-size: 13px;
                     font-weight: bold;
@@ -457,7 +477,7 @@
               </div>
               <div style="margin-bottom: 14px">
                 <a
-                  href="building-hub.html"
+                  href="building-index.html"
                   style="
                     font-size: 13px;
                     font-weight: bold;
@@ -517,20 +537,6 @@
                       >sunvisor</a
                     >
                   </li>
-                  <li style="margin: 0; padding: 0">
-                    <a
-                      href="sound.html"
-                      style="
-                        font-size: 15px;
-                        color: #00008b;
-                        text-decoration: underline;
-                        display: block;
-                        padding: 0 0 1px 6px;
-                        line-height: 1.6;
-                      "
-                      >music/audio</a
-                    >
-                  </li>
                 </ul>
               </div>
               <div style="margin-bottom: 14px">
@@ -573,19 +579,70 @@
                 background: #c8c8c8;
               "
             >
-              <div
-                style="
-                  font-size: 16px;
-                  line-height: 1.6;
-                  margin-bottom: 16px;
-                  max-width: 1200px;
-                "
-              >
-                <p>
-                  I purchased a 1967 MGB GT from a dad in Buffalo, NY. It's
-                  hilariously small in contemporary traffic.
-                </p>
+              <div style="font-size: 16px; line-height: 1.6; margin-bottom: 16px; max-width: 1100px;">
+                <p>I purchased a 1967 MGB GT from a dad in Buffalo, NY. It's hilariously small in contemporary traffic.</p>
               </div>
+              <!-- sv-01 (0.821) + sv-02 (0.746) + sv-03 (0.750) natural AR -->
+              <div style="display: flex; gap: 10px; margin-top: 16px; align-items: flex-start;">
+                <div style="flex: 0.821; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-01.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-01.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+                <div style="flex: 0.746; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-02.webp','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-02.webp" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+                <div style="flex: 0.750; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-03.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-03.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+              </div>
+              <div style="font-size: 16px; line-height: 1.6; margin-bottom: 8px; max-width: 1100px; margin-top: 16px;">
+                <p>At 42" high the windshield is already very small in addition to the original sun visors which makes it very difficult to see while in use. 
+                  <br>So I remade them out of a sheet of green acrylic cut with a cnc router.</p>
+              </div>
+              <!-- sv-04 (0.750) + sv-05 (0.751) + sv-06.gif (0.627) natural AR -->
+              <div style="display: flex; gap: 10px; margin-top: 16px; align-items: flex-start;">
+                <div style="flex: 0.750; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-04.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-04.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+                <div style="flex: 0.751; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-05.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-05.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+                <div style="flex: 0.627; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-06.gif','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-06.gif" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+              </div>
+              <!-- sv-07 (1.334) + sv-08 (1.250) natural AR -->
+              <div style="display: flex; gap: 10px; margin-top: 10px; align-items: flex-start;">
+                <div style="flex: 1.334; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-07.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-07.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+                <div style="flex: 1.250; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-08.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-08.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+                </div>
+              </div>
+              
+              </div>
+              <div style="font-size: 16px; line-height: 1.6; margin-bottom: 8px; max-width: 1100px; margin-top: 16px;">
+                <p>Below is the link to the svg file for making your own, it uses the stock sun visor frames that are easily disassembled. Just make sure the acrylic is at least 1/8" thick to avoid cracking.</p>
+                <div style="margin: 4px 0;"><a href="assets/building/sunvisor/Sunvisor.svg" download style="color: #00008b; text-decoration: underline; font-size: 15px;">Sunvisor &#x2B07;</a></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px; align-items: flex-start;">
+                <div style="flex: 1.732; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                  <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/sunvisor/sv-09.jpg','_blank')" title="Open full size">&#x25A1;</span></div></div>
+                  <div style="background: #b8b8b0;"><img src="assets/building/sunvisor/sv-09.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
+
+                </div>
+
+                
+              </div>
+              
             </td>
           </tr>
         </table>
