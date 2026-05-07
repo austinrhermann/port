@@ -65,16 +65,13 @@ def build_grid(images, folder):
     imgs_array = '[' + ','.join(f"'{folder}/{fname}'" for fname in images) + ']'
     return table, imgs_array, str(len(images))
 
-def build_viewer_script(title, images, folder):
+def build_viewer_script(images, folder):
     """Build the Win95 viewer HTML + script block."""
     imgs_array = '[' + ','.join(f"'{folder}/{fname}'" for fname in images) + ']'
-    count = len(images)
-    counter_text = f"1 / {count}" if count > 0 else "0 / 0"
-    escaped_title = title.replace("'", "\\'")
 
     return (
         f'<div id="lb" class="lb-window">'
-        f'<div class="lb-titlebar"><span id="lb-title">&#x1F4F7; Image Viewer</span>'
+        f'<div class="lb-titlebar"><span id="lb-title"></span>'
         f'<div class="lb-titlebar-btns">'
         f'<span class="lb-titlebar-btn">_</span>'
         f'<span class="lb-titlebar-btn" onclick="window.open(imgs[cur],\'_blank\')" title="Open full size">&#x25A1;</span>'
@@ -82,7 +79,6 @@ def build_viewer_script(title, images, folder):
         f'</div></div>'
         f'<div class="lb-toolbar">'
         f'<span class="lb-btn" onclick="lbPrev()">&#9664;</span>'
-        f'<span id="lb-counter" style="padding:0 6px;font-family:\'Times New Roman\',serif;font-size:13px;-webkit-font-smoothing:none;">{counter_text}</span>'
         f'<span class="lb-btn" onclick="lbNext()">&#9654;</span>'
         f'</div>'
         f'<div class="lb-stage"><img id="lb-img" src="" alt="" loading="lazy" decoding="async"></div>'
@@ -90,7 +86,7 @@ def build_viewer_script(title, images, folder):
         f'<script>var imgs={imgs_array};var cur=0;'
         f'function lbFit(){{var lb=document.getElementById(\'lb\');var stage=lb.querySelector(\'.lb-stage\');var img=document.getElementById(\'lb-img\');var top=stage.getBoundingClientRect().top;var h=\'calc(100vh - \'+(top+5)+\'px)\';var imgH=\'calc(100vh - \'+(top+15)+\'px)\';stage.style.height=h;stage.style.maxHeight=\'\';img.style.maxHeight=imgH;img.style.width=\'auto\';img.style.maxWidth=\'calc(100% - 10px)\';function fit(){{if(img.naturalWidth>img.naturalHeight){{stage.style.height=\'auto\';stage.style.maxHeight=h;}}}}if(img.complete&&img.naturalWidth>0){{fit();}}else{{img.onload=fit;}}}}'
         f'function lbOpen(i){{cur=i;document.getElementById(\'photo-grid\').style.display=\'none\';var t=document.getElementById(\'gallery-title\');if(t)t.style.display=\'none\';var d=document.getElementById(\'gallery-desc\');if(d)d.style.display=\'none\';document.getElementById(\'lb\').style.display=\'block\';window.scrollTo(0,0);lbShow();requestAnimationFrame(lbFit);}}'
-        f'function lbShow(){{document.getElementById(\'lb-img\').src=imgs[cur];document.getElementById(\'lb-counter\').textContent=(cur+1)+\' / \'+imgs.length;document.getElementById(\'lb-title\').textContent=\'\\uD83D\\uDCF7 {escaped_title} \\u2014 \'+(cur+1)+\' / \'+imgs.length;}}'
+        f'function lbShow(){{document.getElementById(\'lb-img\').src=imgs[cur];}}'
         f'function lbClose(){{document.getElementById(\'lb\').style.display=\'none\';var t=document.getElementById(\'gallery-title\');if(t)t.style.display=\'\';var d=document.getElementById(\'gallery-desc\');if(d)d.style.display=\'\';document.getElementById(\'photo-grid\').style.display=\'table\';}}'
         f'function lbNext(){{cur=(cur+1)%imgs.length;lbShow();requestAnimationFrame(lbFit);}}'
         f'function lbPrev(){{cur=(cur-1+imgs.length)%imgs.length;lbShow();requestAnimationFrame(lbFit);}}'
@@ -118,7 +114,7 @@ def update_gallery(html_file, title, folder_rel, description):
         html = f.read()
 
     grid_html, imgs_array, count = build_grid(images, folder_rel)
-    viewer_html = build_viewer_script(title, images, folder_rel)
+    viewer_html = build_viewer_script(images, folder_rel)
 
     # --- REPLACE GRID ---
     # Find <table ... id="photo-grid" ... (handles multi-line tags)

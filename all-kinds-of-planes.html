@@ -157,7 +157,7 @@
               "
             >
               <a
-                href="everything.html"
+                href="index.html"
                 style="
                   font-size: 24px;
                   font-weight: bold;
@@ -805,7 +805,7 @@
                       cursor: pointer;
                     "
                   >
-                    &#x25A1;
+                    <span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span>
                   </button>
                 </div>
               </div>
@@ -1548,7 +1548,7 @@
                           class="lb-titlebar-btn"
                           onclick="window.open(imgs[cur], '_blank')"
                           title="Open full size"
-                          >&#x25A1;</span
+                          ><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span
                         ><span class="lb-titlebar-btn" onclick="lbClose()"
                           >&#x2715;</span
                         >
@@ -1556,10 +1556,6 @@
                     </div>
                     <div class="lb-toolbar">
                       <span class="lb-btn" onclick="lbPrev()">&#9664;</span
-                      ><span
-                        id="lb-counter"
-                        style="padding: 0 6px; font-size: 13px"
-                        >1 / 18</span
                       ><span class="lb-btn" onclick="lbNext()">&#9654;</span>
                     </div>
                     <div class="lb-stage">
@@ -1608,8 +1604,6 @@
                     }
                     function lbShow() {
                       document.getElementById("lb-img").src = imgs[cur];
-                      document.getElementById("lb-counter").textContent =
-                        cur + 1 + " / " + imgs.length;
                     }
                     function lbClose() {
                       document.getElementById("lb").style.display = "none";
