@@ -55,7 +55,7 @@
         background: #c0c0c0;
         color: #000;
         border: 1px solid;
-        border-color: #fff #808080 #808080 #fff;
+        border-color: #fff #808080 transparent #fff;
         font-size: 10px;
         padding: 0 4px;
         line-height: 14px;
@@ -70,16 +70,30 @@
           opacity: 0;
         }
       }
-    </style>
+    
+@media (max-width: 700px) {
+  body { overflow-x: hidden; }
+  table[style*="min-height"],
+  table[style*="min-height"] tbody,
+  table[style*="min-height"] tr,
+  table[style*="min-height"] td {
+    display: block !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+  }
+  table[style*="min-height"] td { border-right: none !important; }
+  img { max-width: 100% !important; height: auto !important; }
+  #gb-win { width: min(90vw, 480px) !important; }
+}
+</style>
   </head>
   <body>
     <div
       style="
         border: 2px solid;
-        border-color: #fff #808080 #808080 #fff;
-        box-shadow: 1px 1px 0 #000;
+        border-color: #fff #808080 transparent #fff;
+        
         margin: 0;
-        padding-bottom: 30px;
       "
     >
       <!-- PAGE AREA -->
@@ -593,11 +607,11 @@
               </div>
               <!-- dp_01 + dp_02 after paragraph 3 -->
               <div style="display: flex; gap: 10px; margin-top: 16px; align-items: flex-start;">
-                <div style="flex: 0.756; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 0.756; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_01.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_01.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 0.971; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 0.971; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_02.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_02.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
@@ -608,26 +622,26 @@
               </div>
               <!-- dp_03 + dp_04 + dp_05 natural AR -->
               <div style="display: flex; gap: 10px; margin-top: 16px; align-items: flex-start;">
-                <div style="flex: 1.087; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.087; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_03.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_03.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.000; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.000; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_04.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_04.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.419; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.419; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_05.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_05.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
               </div>
               <!-- dp_06 + dp_07 natural AR -->
               <div style="display: flex; gap: 10px; margin-top: 10px; align-items: flex-start;">
-                <div style="flex: 1.373; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.373; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_06.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_06.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.596; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.596; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_07.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_07.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
@@ -640,15 +654,15 @@
               </div>
               <!-- Row 3: 08 (0.999) + 09 (1.419) + 10 (1.000) natural AR -->
               <div style="display: flex; gap: 10px; margin-top: 16px; align-items: flex-start;">
-                <div style="flex: 0.999; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 0.999; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_08.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_08.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.419; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.419; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_09.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_09.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.000; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.000; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_10.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_10.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
@@ -658,15 +672,15 @@
               </div>
               <!-- Row 4: 11 (0.508) + 12 (1.037) + 13 (0.800) natural AR -->
               <div style="display: flex; gap: 10px; margin-top: 10px; align-items: flex-start;">
-                <div style="flex: 0.508; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 0.508; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_11.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_11.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 1.037; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 1.037; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_12.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_12.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
-                <div style="flex: 0.800; border: 2px solid; border-color: #fff #808080 #808080 #fff;">
+                <div style="flex: 0.800; border: 2px solid; border-color: #fff #808080 transparent #fff;">
                   <div class="lb-titlebar"><span></span><div class="lb-titlebar-btns"><span class="lb-titlebar-btn" onclick="window.open('assets/building/durst-printo/dp_13.jpg','_blank')" title="Open full size"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></span></div></div>
                   <div style="background: #b8b8b0;"><img src="assets/building/durst-printo/dp_13.jpg" alt="" style="width: 100%; height: auto; display: block; filter: contrast(1.05) saturate(0.85);" loading="lazy" decoding="async"></div>
                 </div>
@@ -676,5 +690,15 @@
         </table>
       </div>
     </div>
-  </body>
+  <div id="mob-warn" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:99999;align-items:center;justify-content:center;">
+  <div style="width:280px;background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;box-shadow:2px 2px 0 #000;font-family:'Times New Roman',Times,serif;">
+    <div style="background:#000080;color:#fff;font-size:11px;font-weight:bold;padding:2px 4px 2px 6px;display:flex;align-items:center;justify-content:space-between;user-select:none;"><span>&#9888; Warning</span><span onclick="closeMobWarn()" style="background:#c0c0c0;color:#000;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;font-size:10px;padding:0 3px;line-height:14px;cursor:pointer;">&#215;</span></div>
+    <div style="padding:14px 12px 10px;font-size:13px;line-height:1.6;color:#000;"><p style="margin:0 0 10px;">This site was not designed for phone viewing.</p><p style="margin:0 0 14px;font-style:italic;font-size:12px;">Best viewed on a desktop, in the computer room.</p><div style="text-align:center;"><button onclick="closeMobWarn()" style="background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;padding:3px 24px;font-family:'Times New Roman',Times,serif;font-size:12px;cursor:pointer;">OK</button></div></div>
+  </div>
+</div>
+<script>
+function closeMobWarn(){document.getElementById('mob-warn').style.display='none';}
+if(window.innerWidth<768&&!sessionStorage.getItem('mob-warned')){document.getElementById('mob-warn').style.display='flex';sessionStorage.setItem('mob-warned','1');}
+</script>
+</body>
 </html>

@@ -48,16 +48,30 @@
           opacity: 0;
         }
       }
-    </style>
+    
+@media (max-width: 700px) {
+  body { overflow-x: hidden; }
+  table[style*="min-height"],
+  table[style*="min-height"] tbody,
+  table[style*="min-height"] tr,
+  table[style*="min-height"] td {
+    display: block !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+  }
+  table[style*="min-height"] td { border-right: none !important; }
+  img { max-width: 100% !important; height: auto !important; }
+  #gb-win { width: min(90vw, 480px) !important; }
+}
+</style>
   </head>
   <body>
     <div
       style="
         border: 2px solid;
-        border-color: #fff #808080 #808080 #fff;
-        box-shadow: 1px 1px 0 #000;
+        border-color: #fff #808080 transparent #fff;
+        
         margin: 0;
-        padding-bottom: 30px;
       "
     >
       <!-- PAGE AREA -->
@@ -565,18 +579,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="space2-video" poster="assets/thumbs/the_space_explorers_2 (1080p).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/the_space_explorers_2%20.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="space2-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="space2Toggle()">
-      <div id="space2-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="space2-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="space2-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="space2Play()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="space2-playbtn" onclick="space2Toggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="space2-playbtn" onclick="space2Toggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="space2Seek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="space2-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="space2-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="space2-volbtn" onclick="space2Mute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="space2FS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="space2-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="space2-volbtn" onclick="space2Mute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="space2FS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>The Space Explorers 2</strong><br>
@@ -602,18 +616,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="space-video" poster="assets/thumbs/the_space_explorers (1080p).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/the_space_explorers.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="space-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="spaceToggle()">
-      <div id="space-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="space-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="space-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="spacePlay()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="space-playbtn" onclick="spaceToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="space-playbtn" onclick="spaceToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="spaceSeek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="space-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="space-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="space-volbtn" onclick="spaceMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="spaceFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="space-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="space-volbtn" onclick="spaceMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="spaceFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>The Space Explorers</strong><br>
@@ -643,18 +657,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="intel-video" poster="assets/thumbs/intel__hype_ (1080p).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/intel__hype_%20(1080p).mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="intel-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="intelToggle()">
-      <div id="intel-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="intel-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="intel-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="intelPlay()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="intel-playbtn" onclick="intelToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="intel-playbtn" onclick="intelToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="intelSeek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="intel-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="intel-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="intel-volbtn" onclick="intelMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="intelFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="intel-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="intel-volbtn" onclick="intelMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="intelFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>Intel &#8220;Hype&#8221;</strong><br>
@@ -692,18 +706,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="fbcs-video" poster="assets/thumbs/facebook__community_standards_ (1080p).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/facebook_community_standards.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="fbcs-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="fbcsToggle()">
-      <div id="fbcs-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="fbcs-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="fbcs-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="fbcsPlay()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="fbcs-playbtn" onclick="fbcsToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="fbcs-playbtn" onclick="fbcsToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="fbcsSeek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="fbcs-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="fbcs-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="fbcs-volbtn" onclick="fbcsMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="fbcsFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="fbcs-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="fbcs-volbtn" onclick="fbcsMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="fbcsFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>Facebook Community Standards</strong><br>
@@ -740,18 +754,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="fble-video" poster="assets/thumbs/facebook_-_major_life_events (1080p).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/facebook_life_events.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="fble-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="fbleToggle()">
-      <div id="fble-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="fble-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="fble-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="fblePlay()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="fble-playbtn" onclick="fbleToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="fble-playbtn" onclick="fbleToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="fbleSeek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="fble-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="fble-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="fble-volbtn" onclick="fbleMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="fbleFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="fble-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="fble-volbtn" onclick="fbleMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="fbleFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>Facebook &#8212; Major Life Events</strong><br>
@@ -785,18 +799,18 @@
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
     <video id="blend-video" poster="assets/thumbs/blend_manifesto (1080p) (0-00-47-06).jpg" src="https://pub-79aadb2187284b038637161677781b63.r2.dev/blend.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata"></video>
     <div id="blend-click" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: none;" onclick="blendToggle()">
-      <div id="blend-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
+      <div id="blend-pauseind" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9646;&#9646;</div>
     </div>
     <div id="blend-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;" onclick="blendPlay()">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 10px 20px; font-size: 28px; user-select: none; line-height: 1;">&#9654;</div>
     </div>
   </div>
   <div style="background: #c0c0c0; padding: 3px 4px; display: flex; align-items: center; gap: 3px;">
-    <button id="blend-playbtn" onclick="blendToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
+    <button id="blend-playbtn" onclick="blendToggle()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 8px; font-size: 13px; cursor: pointer; line-height: 1;">&#9654;</button>
     <div onclick="blendSeek(event, this)" style="flex: 1; height: 14px; background: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; cursor: pointer; position: relative;">
       <div id="blend-prog" style="height: 100%; width: 0%; background: #000080; pointer-events: none;"></div>
     </div>
-    <span id="blend-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="blend-volbtn" onclick="blendMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="blendFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
+    <span id="blend-time" style="font-size: 11px; white-space: nowrap; min-width: 72px; text-align: center; padding: 0 3px;">0:00 / 0:00</span><button id="blend-volbtn" onclick="blendMute()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;">&#128266;</button><button onclick="blendFS()" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 transparent #fff; padding: 1px 6px; font-size: 11px; cursor: pointer;"><span style="display:inline-block;width:10px;height:8px;border:2px solid;vertical-align:middle;"></span></button>
   </div>
   <div style="padding: 8px 6px 10px 6px; font-size: 12px; line-height: 1.6; color: #222;">
     <strong>Blend Manifesto</strong><br>
@@ -827,5 +841,15 @@
         </table>
       </div>
     </div>
-  </body>
+  <div id="mob-warn" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:99999;align-items:center;justify-content:center;">
+  <div style="width:280px;background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;box-shadow:2px 2px 0 #000;font-family:'Times New Roman',Times,serif;">
+    <div style="background:#000080;color:#fff;font-size:11px;font-weight:bold;padding:2px 4px 2px 6px;display:flex;align-items:center;justify-content:space-between;user-select:none;"><span>&#9888; Warning</span><span onclick="closeMobWarn()" style="background:#c0c0c0;color:#000;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;font-size:10px;padding:0 3px;line-height:14px;cursor:pointer;">&#215;</span></div>
+    <div style="padding:14px 12px 10px;font-size:13px;line-height:1.6;color:#000;"><p style="margin:0 0 10px;">This site was not designed for phone viewing.</p><p style="margin:0 0 14px;font-style:italic;font-size:12px;">Best viewed on a desktop, in the computer room.</p><div style="text-align:center;"><button onclick="closeMobWarn()" style="background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #808080;border-right:2px solid #808080;padding:3px 24px;font-family:'Times New Roman',Times,serif;font-size:12px;cursor:pointer;">OK</button></div></div>
+  </div>
+</div>
+<script>
+function closeMobWarn(){document.getElementById('mob-warn').style.display='none';}
+if(window.innerWidth<768&&!sessionStorage.getItem('mob-warned')){document.getElementById('mob-warn').style.display='flex';sessionStorage.setItem('mob-warned','1');}
+</script>
+</body>
 </html>
